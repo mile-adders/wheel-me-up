@@ -4,6 +4,7 @@ const notFound = require('../middleware/404.js');
 const error = require('../middleware/500.js');
 
 const supergoose = require('@code-fellows/supergoose');
+
 const notfoundMockRequest = supergoose(notFound);
 const errorMockRequest = supergoose(error);
 
