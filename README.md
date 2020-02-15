@@ -1,11 +1,15 @@
-# wheel-me-up
-401-midterm project.
 
-1. create car-schema ( related to the car-company ) and usercar achema ( relted to the one how will rented the car)
-2. create dynamic model ( have the crud mthod ) 
-3. make connection between crud model and schema inside the model/schema-model .
-4. start build the api (/car-company)which have the five method(get(read show the hole data ) , get by id,create , update and delete )
-5. to show the data go through ( http://localhost:3000/api/v1/car-company)
-6. make index.js ( have server up and mongoose connect )
-7. make srever.js ( to use the rout and middleware)
-8. i add logger.js to help me test my code . 
+# 401 midterm project
+
+# Project Name: Wheel Me Up
+
+# Project Description: 
+We as Mile-adders believe in returning to the community, as it stands in this is the age of technology and we want to carve our name in this age, so as a plan of creating multiple useful web application, we started with creating a car renting web application where our users will enjoy and use out application to connect to each other in need of renting a car, so we designed an application that provides the ability to rent cars of any type and brand, directly from their owners, or a much better deal from car renting companies, and we believe that small things like that connects the world together.
+
+# Team Name: Mile Adders
+
+# lets meet The Mile-Adders:
+- Ahmad K. Al-Mahasneh
+- Obada M. Al-Matrami
+- Mai Y. Al-Shagarain
+- Bayan M. Al-shaqareen
