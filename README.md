@@ -1,15 +1,15 @@
-# wheel-me-up
-401-midterm project.
 
-i start to build the Oauth to our app which is mile-adder 
-first of all 
-the auth folder contain Oauth folder, routes.js, middleware.js, setup-roles.js, roles-module, setup-rolesdb.js and Users-modle.js
+# 401 midterm project
 
-Oauth : contain the Oauth for github and google aotharization 
+# Project Name: Wheel Me Up
 
-routes : to let our app to routes between signin, signup 
+# Project Description: 
+We as Mile-adders believe in returning to the community, as it stands in this is the age of technology and we want to carve our name in this age, so as a plan of creating multiple useful web application, we started with creating a car renting web application where our users will enjoy and use out application to connect to each other in need of renting a car, so we designed an application that provides the ability to rent cars of any type and brand, directly from their owners, or a much better deal from car renting companies, and we believe that small things like that connects the world together.
 
-Users : to genarate a key for the users 
+# Team Name: Mile Adders
 
-
- 
+# lets meet The Mile-Adders:
+- Ahmad K. Al-Mahasneh
+- Obada M. Al-Matrami
+- Mai Y. Al-Shagarain
+- Bayan M. Al-shaqareen
