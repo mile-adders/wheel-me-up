@@ -26,7 +26,7 @@ app.use(express.urlencoded({extended:true}));
 
 
 // Routes
-const carRoute = require('../api-routes/api-routes.js')
+const carRoute = require('../api-routes/api-routes.js');
 
 // app.use(apiRouter);
 app.use(authRouter);
@@ -35,15 +35,15 @@ app.use(authRouter);
 
 app.use('/api/v1', carRoute );
 
-app.use(logger)
+app.use(logger);
 
 module.exports = {
-    server: app,
-    start: port => {
-      let PORT = port || process.env.PORT || 3000;
-      app.listen(PORT, () => console.log(` I am a live : ${PORT}`));
-    },
-  };
+  server: app,
+  start: port => {
+    let PORT = port || process.env.PORT || 3000;
+    app.listen(PORT, () => console.log(` I am a live : ${PORT}`));
+  },
+};
 
 
 

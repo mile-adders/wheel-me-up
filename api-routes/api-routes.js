@@ -1,7 +1,7 @@
 'use strict';
-const express = require('express')
+const express = require('express');
 
-const car_company = require('../model/car-schema-model.js')
+const car_company = require('../model/car-schema-model.js');
 // const userCar = require('../model/usercar-schema-model')
 
 const router = express.Router();
@@ -11,7 +11,7 @@ router.get('/car-company:_id', getCarByIdea);
 router.post('/car-company', postCar);
 router.put('/car-company:_id', updatecar );
 router.delete('/car-company:_id', deletecar);
-let newCar = new car_company 
+let newCar = new car_company; 
 /////  read all data 
 /**
  * function 
@@ -21,18 +21,18 @@ let newCar = new car_company
  * @param {function} next 
  */
 function getCar(req, res , next) {
-    // console.log('hi')
-    newCar.get()
-        .then(data => {
-            console.log('data in get function' , data);
+  // console.log('hi')
+  newCar.get()
+    .then(data => {
+      console.log('data in get function' , data);
             
-            const results = {
-                count: data.length,
-                ourData: data
-            };
-            res.status(200).json(results);
-        })
-        .catch(next)
+      const results = {
+        count: data.length,
+        ourData: data,
+      };
+      res.status(200).json(results);
+    })
+    .catch(next);
 }
 
 /**
@@ -43,13 +43,13 @@ function getCar(req, res , next) {
  * @param {function} next 
  */
 function getCarByIdea(req, res, next) {
-    newCar.get(req.param.id)
-        .then(results => {
-            console.log('results' , results)
-            res.status(200).json(results);
-        })
-        .catch(next)
-};
+  newCar.get(req.param.id)
+    .then(results => {
+      console.log('results' , results);
+      res.status(200).json(results);
+    })
+    .catch(next);
+}
 
 /**
  * function
@@ -59,11 +59,12 @@ function getCarByIdea(req, res, next) {
  * @param {function } next 
  */
 function postCar(req, res, next) {
-    newCar.create(req.body)
-        .then(results =>
-            res.status(201).json(results)
-        )
-        .catch(next)
+  newCar.create(req.body)
+    .then(results =>{
+      res.status(201).json(results);
+    },
+    )
+    .catch(next);
 }
 
 /**
@@ -75,11 +76,11 @@ function postCar(req, res, next) {
  */
 
 function updatecar (req , res , next){
-    console.log("req.body",req.body)
-    newCar.update(req.param.id , req.body)
+  console.log('req.body',req.body);
+  newCar.update(req.param.id , req.body)
     .then( results =>{
-     console.log('results', results)
-        res.status(200).json(results)
+      console.log('results', results);
+      res.status(200).json(results);
     })
     .catch(next);
 }
@@ -92,9 +93,9 @@ function updatecar (req , res , next){
  */
 
 function deletecar (req , res , next ){
-    newCar.delete (req.param.id)
+  newCar.delete (req.param.id)
     .then(results =>{
-        results.status(200).json("iam delete")
+      results.status(200).json('iam delete');
     })
     .catch(next);
 }

@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 'use strict';
 
 const User = require('../auth/Users-models.js');

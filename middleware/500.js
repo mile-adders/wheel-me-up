@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 'use strict';
 //Error
 module.exports = (err, req, res, next) => {

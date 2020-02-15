@@ -12,60 +12,60 @@ const API_SERVER = process.env.API_SERVER;
 
 module.exports = async function authorize(req, res, next) {
 
-    try {
-        let code = req.query.code;
+  try {
+    let code = req.query.code;
 
-        let remoteToken = await exchangeCodeForToken(code);
+    let remoteToken = await exchangeCodeForToken(code);
 
-        let remoteUser = await getRemoteUserInfo(remoteToken);
+    let remoteUser = await getRemoteUserInfo(remoteToken);
 
-        let [user, token] = await getUser(remoteUser);
-        req.user = user;
-        req.token = token;
+    let [user, token] = await getUser(remoteUser);
+    req.user = user;
+    req.token = token;
 
-        next();
-    } catch (e) { next(`ERROR: ${e.message}`) }
+    next();
+  } catch (e) { next(`ERROR: ${e.message}`); }
 
-}
+};
 
 async function exchangeCodeForToken(code) {
 
-    let tokenResponse = await superagent.post(tokenServerUrl).send({
-        code: code,
-        client_id: CLIENT_ID,
-        client_secret: CLIENT_SECRET,
-        redirect_uri: API_SERVER,
-        grant_type: 'authorization_code',
-    })
+  let tokenResponse = await superagent.post(tokenServerUrl).send({
+    code: code,
+    client_id: CLIENT_ID,
+    client_secret: CLIENT_SECRET,
+    redirect_uri: API_SERVER,
+    grant_type: 'authorization_code',
+  });
 
-    let access_token = tokenResponse.body.access_token;
+  let access_token = tokenResponse.body.access_token;
 
-    return access_token;
+  return access_token;
 
 }
 
 async function getRemoteUserInfo(token) {
 
-    let userResponse =
+  let userResponse =
         await superagent.get(remoteAPI)
-        .set('user-agent', 'express-app')
-        .set('Authorization', `token ${token}`)
+          .set('user-agent', 'express-app')
+          .set('Authorization', `token ${token}`);
 
-    let user = userResponse.body;
+  let user = userResponse.body;
 
-    return user;
+  return user;
 
 }
 
 async function getUser(remoteUser) {
-    let userRecord = {
-        username: remoteUser.login,
-        password: 'oauthpassword'
-    }
+  let userRecord = {
+    username: remoteUser.login,
+    password: 'oauthpassword',
+  };
 
-    let user = await users.save(userRecord);
-    let token = users.generateToken(user);
+  let user = await users.save(userRecord);
+  let token = users.generateToken(user);
 
-    return [user, token];
+  return [user, token];
 
 }
