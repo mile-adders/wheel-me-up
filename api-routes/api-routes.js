@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 'use strict';
 const express = require('express');
 
@@ -23,9 +24,9 @@ let newUser = new userCar ;
 /**
  * function 
  * read all data ( means show hole data in our api )
- * @param {object} req 
- * @param {object} res 
- * @param {function} next 
+ * @params {object} req 
+ * @params {object} res 
+ * @params {function} next 
  */
 function getCar(req, res , next) {
   // console.log('hi')
@@ -45,9 +46,9 @@ function getCar(req, res , next) {
 /**
  * function 
  * read specific data about one item 
- * @param {object} req 
- * @param {object} res 
- * @param {function} next 
+ * @params {object} req 
+ * @params {object} res 
+ * @params {function} next 
  */
 function getCarByIdea(req, res, next) {
   // console.log('getby.id',newCar.get(req.params._id))
@@ -62,9 +63,9 @@ function getCarByIdea(req, res, next) {
 /**
  * function
  * create an object the hold information about our car app 
- * @param {object} req 
- * @param {object} res 
- * @param {function } next 
+ * @params {object} req 
+ * @params {object} res 
+ * @params {function } next 
  */
 function postCar(req, res, next) {
   newCar.create(req.body)
@@ -78,12 +79,13 @@ function postCar(req, res, next) {
 /**
  * function
  * this function aupdate the information and returrn the new data 
- * @param {object} req 
- * @param {object} res 
- * @param {functions} next 
+ * @params {object} req 
+ * @params {object} res 
+ * @params {functions} next 
  */
 
 function updatecar (req , res , next){
+  console.log('req.body',req.body);
   newCar.update(req.params._id , req.body)
   // console.log('req.params.id',req.params._id);
   // console.log('req.body',req.body)
@@ -96,9 +98,9 @@ function updatecar (req , res , next){
 /**
  * function
  * it's delete an item 
- * @param {object } req 
- * @param { object} res 
- * @param { functions} next 
+ * @params {object } req 
+ * @params { object} res 
+ * @params { functions} next 
  */
 
 function deletecar (req , res , next ){

@@ -1,10 +1,11 @@
+/* eslint-disable no-unused-vars */
 'use strict';
 
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const mongoose = require('mongoose');
 
-let SECRET = "cool mai" ;
+let SECRET = 'cool mai' ;
 
 
 const users = new mongoose.Schema({
