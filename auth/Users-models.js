@@ -58,22 +58,22 @@ module.exports = mongoose.model('users', users);
 // const usersSchema = new mongoose.Schema({
 //   username: {type:String, required:true, unique:true},
 //   password: {type:String, required:true},
-// //   email: {type: String},
-// //   role: {type: String, default:'user', enum: ['admin','editor','user']},
+//   email: {type: String},
+//   role: {type: String, default:'user', enum: ['admin','editor','user']},
   
 // }, {
 //   toObject: { virtuals: true },
 //   toJSON: { virtuals: true },
 // });
 
-// // usersSchema.virtual('role_doc', {
-// //     ref: 'roles',
-// //     localField: 'role',
-// //     foreignField: 'role',
-// //     justOne: true,
-// // });
+// usersSchema.virtual('role_doc', {
+//     ref: 'roles',
+//     localField: 'role',
+//     foreignField: 'role',
+//     justOne: true,
+// });
 
-// // check and decrypt the user password 
+// check and decrypt the user password 
 // usersSchema.pre('save', async function() {
 //     if (this.isModified('password'))
 //   {
@@ -100,21 +100,21 @@ module.exports = mongoose.model('users', users);
     
 // };
 
-// // to verify the user 
-// // usersSchema.statics.authenticateToken = function(token) {
+// to verify the user 
+// usersSchema.statics.authenticateToken = function(token) {
     
-// //     if ( usedTokens.has(token ) ) {
-// //     return Promise.reject('Invalid Token');
-// // }
+//     if ( usedTokens.has(token ) ) {
+//     return Promise.reject('Invalid Token');
+// }
 
-// //   try {
-// //       let parsedToken = jwt.verify(token, SECRET);
-// //       (SINGLE_USE_TOKENS) && parsedToken.type !== 'key' && usedTokens.add(token);
-// //       let query = {_id: parsedToken.id};
-// //       return this.findOne(query);
-// //     } catch(e) { throw new Error('Invalid Token'); }
+//   try {
+//       let parsedToken = jwt.verify(token, SECRET);
+//       (SINGLE_USE_TOKENS) && parsedToken.type !== 'key' && usedTokens.add(token);
+//       let query = {_id: parsedToken.id};
+//       return this.findOne(query);
+//     } catch(e) { throw new Error('Invalid Token'); }
     
-// // };
+// };
 
 // usersSchema.statics.authenticateBasic = function(auth) {
 //   let query = {username:auth.username};
