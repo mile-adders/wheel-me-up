@@ -1,17 +1,25 @@
+/* eslint-disable no-unused-vars */
 'use strict';
 const express = require('express');
 
 const car_company = require('../model/car-schema-model.js');
-// const userCar = require('../model/usercar-schema-model')
+const userCar = require('../model/usercar-schema-model.js');
+
 
 const router = express.Router();
 
 router.get('/car-company', getCar);
-router.get('/car-company:_id', getCarByIdea);
+router.get('/car-company/:_id', getCarByIdea);
 router.post('/car-company', postCar);
-router.put('/car-company:_id', updatecar );
-router.delete('/car-company:_id', deletecar);
+router.put('/car-company/:_id', updatecar );
+router.delete('/car-company/:_id', deletecar);
+router.get('/user-car', get_rentCar);
+router.post('/user-car', post_rentCar);
+router.delete('/user-car/:_id', delete_rentCar);
+
+
 let newCar = new car_company; 
+let newUser = new userCar ; 
 /////  read all data 
 /**
  * function 
@@ -43,10 +51,11 @@ function getCar(req, res , next) {
  * @params {function} next 
  */
 function getCarByIdea(req, res, next) {
-  newCar.get(req.params.id)
-    .then(results => {
-      console.log('results' , results);
-      res.status(200).json(results);
+  // console.log('getby.id',newCar.get(req.params._id))
+  newCar.get(req.params._id)
+    .then(data => {
+      console.log('results' , data);
+      res.status(200).json(data);
     })
     .catch(next);
 }
@@ -77,7 +86,9 @@ function postCar(req, res, next) {
 
 function updatecar (req , res , next){
   console.log('req.body',req.body);
-  newCar.update(req.params.id , req.body)
+  newCar.update(req.params._id , req.body)
+  // console.log('req.params.id',req.params._id);
+  // console.log('req.body',req.body)
     .then( results =>{
       console.log('results', results);
       res.status(200).json(results);
@@ -93,9 +104,53 @@ function updatecar (req , res , next){
  */
 
 function deletecar (req , res , next ){
-  newCar.delete (req.params.id)
+  newCar.delete (req.params._id)
+    .then( results => {
+      res.status(200).json('iam delete');
+    })
+    .catch(next);
+}
+//////////////////////////////// rent-car function for api
+/**
+ * this function can create information about rent car 
+ * @param {object} req 
+ * @param {object} res 
+ * @param {middleware functions} next 
+ */
+function post_rentCar (req , res , next){
+  newUser.create(req.body)
     .then(results =>{
-      results.status(200).json('iam delete');
+      res.status(201).json(results);
+    })
+    .catch(next);
+}
+
+/**
+ *  this function show information "get info " about car that can be rented
+ * @param {object} req 
+ * @param {object} res 
+ * @param {middleware functions} next 
+ */
+function get_rentCar(req , res , next){
+  newUser.get()
+    .then(data => {
+      res.status(200).json(data);
+    })
+    .catch(next);
+}
+/**
+ * this function can delete information about rented car 
+ * @param {object} req 
+ * @param {object} res 
+ * @param {middleware functions} next 
+ */
+function delete_rentCar (req ,res , next){
+  // console.log('ffffff')
+  newUser.delete(req.params._id)
+    .then(data =>{
+      res.status(200).json(data);
+
+      // res.status(200).send('Deleted');
     })
     .catch(next);
 }

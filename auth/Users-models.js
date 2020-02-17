@@ -1,129 +1,175 @@
+/* eslint-disable no-unused-vars */
 'use strict';
 
-const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-// eslint-disable-next-line no-unused-vars
-const RolesModel = require('./roles-model.js');
-const slog = require('../mileadder-logging.js.js/index.js');
+const mongoose = require('mongoose');
 
-const SINGLE_USE_TOKENS = !!process.env.SINGLE_USE_TOKENS;
-const TOKEN_EXPIRE = process.env.TOKEN_LIFETIME || '5m';
-const SECRET = process.env.SECRET || 'mynameissecret';
+let SECRET = 'cool mai' ;
 
-const usedTokens = new Set();
 
-const usersSchema = new mongoose.Schema({
-  username: {type:String, required:true, unique:true},
-  password: {type:String, required:true},
-  email: {type: String},
-  role: {type: String, default:'user', enum: ['admin','editor','user']},
+const users = new mongoose.Schema({
+  username: { type: String, required: true, unique: true },
+  password: { type: String, required: true } ,
   
-}, {
-  toObject: { virtuals: true },
-  toJSON: { virtuals: true },
-});
-
-usersSchema.virtual('role_doc', {
-  ref: 'roles',
-  localField: 'role',
-  foreignField: 'role',
-  justOne: true,
-});
-
-//check and decrypt the user password 
-usersSchema.pre('save', async function() {
-  if (this.isModified('password'))
-  {
-    this.password = await bcrypt.hash(this.password, 5);
-  }
 });
 
 
-usersSchema.statics.createFromOauth = function(email) {
+users.statics.authenticateBasic = async function(user , password){
+//   console.log ('user', user)
+//   console.log('passward', password)
+  let foundUser = await this.find({username: user});
+  // foundUser = await this.find(user);
+  // console.log('foundUser', foundUser)
 
-  if(! email) { return Promise.reject('Validation Error'); }
-
-  return this.findOne( {email} )
-    .then(user => {
-      if( !user ) { throw new Error('User Not Found'); }
-      return user;
-    })
-    // eslint-disable-next-line no-unused-vars
-    .catch( error => {
-      let username = email;
-      let password = 'none';
-      return this.create({username, password, email});
-    });
-
-};
-
-// to verify the user 
-usersSchema.statics.authenticateToken = function(token) {
-
-  if ( usedTokens.has(token ) ) {
-    return Promise.reject('Invalid Token');
+  if (foundUser) {
+    let valid = bcrypt.compare(password, foundUser[0].password);
+    // console.log('gggggggggg',foundUser[0].username)
+    return valid ? foundUser[0].username : Promise.reject();
   }
-
-  try {
-    let parsedToken = jwt.verify(token, SECRET);
-    (SINGLE_USE_TOKENS) && parsedToken.type !== 'key' && usedTokens.add(token);
-    let query = {_id: parsedToken.id};
-    return this.findOne(query);
-  } catch(e) { throw new Error('Invalid Token'); }
-
-};
-
-usersSchema.statics.authenticateBasic = function(auth) {
-  let query = {username:auth.username};
-  return this.findOne(query)
-    .then( user => user && user.comparePassword(auth.password) )
-    .catch(error => {throw error;});
-};
-
-usersSchema.methods.comparePassword = function(password) {
-  console.log('PASSWORD HASH', password, this.password);
-  return bcrypt.compare( password, this.password )
-    .then( valid => valid ? this : null);
-};
-
-
-usersSchema.methods.generateToken = async function(type) {
-  slog.log('Generating token for user with type: ', type);
-  const role = await this.getRole();
-  let token = {
-    id: this._id,
-    capabilities: role.capabilities,
-    type: type || 'user',
-  };
-
-  let options = {};
-  if ( type !== 'key' && !! TOKEN_EXPIRE ) {
-    options = { expiresIn: TOKEN_EXPIRE };
+  else {
+    Promise.reject();
   }
+} ;
 
-  return jwt.sign(token, SECRET, options);
+//   Method to generate a Token following a valid login
+users.statics.generateToken = function(user) {
+  let token = jwt.sign({ id: this._id  }, SECRET);
+  // let token = jwt.sign({ username: user.username}, SECRET);
+  //
+  return token;
 };
 
-usersSchema.methods.can = async function(capability) {
-  const role = await this.getRole();
-  return role.capabilities.includes(capability);
-};
+module.exports = mongoose.model('users', users);
+
+// //////////////// obada work ////////////////
+// const mongoose = require('mongoose');
+// const bcrypt = require('bcryptjs');
+// const jwt = require('jsonwebtoken');
+// // eslint-disable-next-line no-unused-vars
+// const RolesModel = require('./roles-model.js');
+// // const slog = require('../mileadder-logging.js.js/index.js');
+
+// const SINGLE_USE_TOKENS = !!process.env.SINGLE_USE_TOKENS;
+// const TOKEN_EXPIRE = process.env.TOKEN_LIFETIME || '5m';
+// const SECRET = process.env.SECRET || 'mynameissecret';
+
+// const usedTokens = new Set();
+
+// const usersSchema = new mongoose.Schema({
+//   username: {type:String, required:true, unique:true},
+//   password: {type:String, required:true},
+// //   email: {type: String},
+// //   role: {type: String, default:'user', enum: ['admin','editor','user']},
+  
+// }, {
+//   toObject: { virtuals: true },
+//   toJSON: { virtuals: true },
+// });
+
+// // usersSchema.virtual('role_doc', {
+// //     ref: 'roles',
+// //     localField: 'role',
+// //     foreignField: 'role',
+// //     justOne: true,
+// // });
+
+// // check and decrypt the user password 
+// usersSchema.pre('save', async function() {
+//     if (this.isModified('password'))
+//   {
+//       this.password = await bcrypt.hash(this.password, 5);
+//     }
+// });
 
 
-usersSchema.methods.getRole = async function() {
-  const user = await this.populate('role_doc').execPopulate();
-  slog.log('Populated user with roles: ', user);
-  const role = user.role_doc;
-  if(role === null) {
-    throw new Error('invalid role for user ' + user.username);
-  }
-  return role;
-};
+// usersSchema.statics.createFromOauth = function(email) {
+    
+//     if(! email) { return Promise.reject('Validation Error'); }
+    
+//     return this.findOne( {email} )
+//     .then(user => {
+//         if( !user ) { throw new Error('User Not Found'); }
+//         return user;
+//     })
+//     // eslint-disable-next-line no-unused-vars
+//     .catch( error => {
+//         let username = email;
+//         let password = 'none';
+//         return this.create({username, password, email});
+//     });
+    
+// };
+
+// // to verify the user 
+// // usersSchema.statics.authenticateToken = function(token) {
+    
+// //     if ( usedTokens.has(token ) ) {
+// //     return Promise.reject('Invalid Token');
+// // }
+
+// //   try {
+// //       let parsedToken = jwt.verify(token, SECRET);
+// //       (SINGLE_USE_TOKENS) && parsedToken.type !== 'key' && usedTokens.add(token);
+// //       let query = {_id: parsedToken.id};
+// //       return this.findOne(query);
+// //     } catch(e) { throw new Error('Invalid Token'); }
+    
+// // };
+
+// usersSchema.statics.authenticateBasic = function(auth) {
+//   let query = {username:auth.username};
+//   return this.findOne(query)
+//   .then( user => user && user.comparePassword(auth.password) )
+//   .catch(error => {throw error;});
+// };
+
+// usersSchema.methods.comparePassword = function(password) {
+//     console.log('PASSWORD HASH', password, this.password);
+//     return bcrypt.compare( password, this.password )
+//     .then( valid => valid ? this : null);
+// };
 
 
-usersSchema.methods.generateKey = async function() {
-  return await this.generateToken('key');
-};
+// usersSchema.methods.generateToken = async function(type) {
+//     // slog.log('Generating token for user with type: ', type);
+//     // const role = await this.getRole();
+//   let token = {
+//       id: this._id,
+//     // capabilities: role.capabilities,
+//     // type: type || 'user',
+// };
 
-module.exports = mongoose.model('users', usersSchema);
+// // let options = {};
+// // if ( type !== 'key' && !! TOKEN_EXPIRE ) {
+// //     options = { expiresIn: TOKEN_EXPIRE };
+// // }
+
+// return jwt.sign(token, SECRET);
+// };
+
+// usersSchema.methods.can = async function(capability) {
+//     const role = await this.getRole();
+//     return role.capabilities.includes(capability);
+// };
+
+
+// usersSchema.methods.getRole = async function() {
+//     const user = await this.populate('role_doc').execPopulate();
+//     console.log('Populated user with roles: ', user);
+//     const role = user.role_doc;
+//     if(role === null) {
+//         throw new Error('invalid role for user ' + user.username);
+//     }
+//     return role;
+// };
+
+
+// usersSchema.methods.generateKey = async function() {
+//     return await this.generateToken('key');
+// };
+
+// module.exports = mongoose.model('users', usersSchema);
+
+
+
