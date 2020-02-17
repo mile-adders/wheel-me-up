@@ -3,10 +3,10 @@
 const schema = require('../schema/usercar-schema');
 const Model = require('./dynamic-model.js');
 
-class usercar extends Model{
+class Usercar extends Model{
   constructor(){
     super(schema);
   }
 }
 
-module.exports = new usercar() ;
+module.exports = Usercar ;
