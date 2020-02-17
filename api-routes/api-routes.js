@@ -16,9 +16,9 @@ let newCar = new car_company;
 /**
  * function 
  * read all data ( means show hole data in our api )
- * @param {object} req 
- * @param {object} res 
- * @param {function} next 
+ * @params {object} req 
+ * @params {object} res 
+ * @params {function} next 
  */
 function getCar(req, res , next) {
   // console.log('hi')
@@ -38,12 +38,12 @@ function getCar(req, res , next) {
 /**
  * function 
  * read specific data about one item 
- * @param {object} req 
- * @param {object} res 
- * @param {function} next 
+ * @params {object} req 
+ * @params {object} res 
+ * @params {function} next 
  */
 function getCarByIdea(req, res, next) {
-  newCar.get(req.param.id)
+  newCar.get(req.params.id)
     .then(results => {
       console.log('results' , results);
       res.status(200).json(results);
@@ -54,9 +54,9 @@ function getCarByIdea(req, res, next) {
 /**
  * function
  * create an object the hold information about our car app 
- * @param {object} req 
- * @param {object} res 
- * @param {function } next 
+ * @params {object} req 
+ * @params {object} res 
+ * @params {function } next 
  */
 function postCar(req, res, next) {
   newCar.create(req.body)
@@ -70,14 +70,14 @@ function postCar(req, res, next) {
 /**
  * function
  * this function aupdate the information and returrn the new data 
- * @param {object} req 
- * @param {object} res 
- * @param {functions} next 
+ * @params {object} req 
+ * @params {object} res 
+ * @params {functions} next 
  */
 
 function updatecar (req , res , next){
   console.log('req.body',req.body);
-  newCar.update(req.param.id , req.body)
+  newCar.update(req.params.id , req.body)
     .then( results =>{
       console.log('results', results);
       res.status(200).json(results);
@@ -87,13 +87,13 @@ function updatecar (req , res , next){
 /**
  * function
  * it's delete an item 
- * @param {object } req 
- * @param { object} res 
- * @param { functions} next 
+ * @params {object } req 
+ * @params { object} res 
+ * @params { functions} next 
  */
 
 function deletecar (req , res , next ){
-  newCar.delete (req.param.id)
+  newCar.delete (req.params.id)
     .then(results =>{
       results.status(200).json('iam delete');
     })
