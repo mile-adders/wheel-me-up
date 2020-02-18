@@ -6,15 +6,15 @@ const car_company = require('../model/car-schema-model.js');
 const userCar = require('../model/usercar-schema-model.js');
 const accessControlList = require('../auth/acl_middleware.js');
 const bearerAuth = require('../auth/bearerAuth.js')
-
+const basicAuth = require('../auth/basicAuth.js/index.js')
 
 const router = express.Router();
 
-router.get('/car-company',bearerAuth ,accessControlList('read') , getCar);
-router.get('/car-company/:_id',bearerAuth,accessControlList('read'), getCarByIdea);
-router.post('/car-company',bearerAuth,accessControlList('create') ,postCar);
-router.put('/car-company/:_id',bearerAuth, accessControlList('update') , updatecar );
-router.delete('/car-company/:_id',bearerAuth,accessControlList('delete'), deletecar);
+router.get('/car-company',basicAuth, accessControlList('read') , getCar);
+router.get('/car-company/:_id',basicAuth,accessControlList('read'), getCarByIdea);
+router.post('/car-company',basicAuth,accessControlList('create') ,postCar);
+router.put('/car-company/:_id',basicAuth, accessControlList('update') , updatecar );
+router.delete('/car-company/:_id',basicAuth,accessControlList('delete'), deletecar);
 
 
 router.get('/user-car',bearerAuth,accessControlList('read'), get_rentCar);
