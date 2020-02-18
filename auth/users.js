@@ -1,125 +1,277 @@
-/* eslint-disable camelcase */
+// /* eslint-disable no-unused-vars */
 // 'use strict';
 
 // const bcrypt = require('bcryptjs');
 // const jwt = require('jsonwebtoken');
 // const mongoose = require('mongoose');
+// const jwt_decode = require('jwt-decode');
+// let SECRET = 'cool mai' ;
+
 
 // const users = new mongoose.Schema({
-//   username: {type: String, required: true, unique: true},
-//   password: {type: String, required: true},
-//   role: {type: String, required: true, default:'user', enum:['user', 'editor', 'admin']},
+//   username: { type: String, required: true, unique: true },
+//   password: { type: String, required: true } ,
+//   role: { type: String , required: true ,default:'guest', enum: ['admin' , 'guest' , 'user'] } ,
+
 // });
 
+// users.statics.checkCpabilities = (capability , role) =>{
 
-// users.statics.checkCapabilities = (capability, role)=>{
-//   console.log(capability, role);
+//   console.log('capability inside checkcapabilites' , capability);
+//   console.log('role  inside checkcapabilites ' , role);
+//   let admin = [ 'read' , 'create' , 'update' , 'delete'];
+//   let user = ['read' , 'create'];
+//   let guest = ['read'];
 
-//   let admin = ['read, create, update, delete'];
-//   let editor = ['read, create, update'];
-//   let user = ['read'];
-
-//   if(role === 'admin' ){
-//     for(let i = 0; i < admin.length;i++){
-//       if(admin[i]) return true;
+//   if(role === 'admin'){
+//     for(let i = 0 ; i < admin.length ; i++){
+//       if(admin[i] === capability) return true ;
 //     }
 //   }
-//   if(role === 'editor' ){
-//     for(let i = 0; i < editor.length;i++){
-//       if(editor[i]) return true;
+//   if(role === 'user'){
+//     for(let i = 0 ; i < user.length ; i++){
+//       if( user[i] === capability ) return true ;
 //     }
 //   }
-//   if(role === 'user' ){
-//     for(let i = 0; i < user.length;i++){
-//       if(user[i]) return true;
+//   if ( role === 'guest'){
+//     for(let i = 0 ; i < guest.length ; i++){
+//       if(guest[i] === capability)  return true ;
 //     }
 //   }
 // };
 
-// users.pre('save', async function(){
-//   if (this.isModified('password')) {
-//     console.log('pre');
-//     this.password = await bcrypt.hash(this.password, 10);
+
+// users.statics.authenticateBasic = async function(user , password){
+
+//   let foundUser = await this.find({username: user});
+
+
+//   if (foundUser) {
+//     let valid =
+//     bcrypt.compare(password, foundUser[0].password);
+//     return valid ? foundUser[0] : Promise.reject();
 //   }
-//   return Promise.reject();
-// });
-
-// users.statics.authenticateBasic = function(auth) {
-//   return this.findOne({username:auth.username})
-//     .then(user => user.passCompare(auth.password))
-//     .catch(console.error);
-// };
-
-// users.methods.passCompare = function(password) {
-//   return bcrypt.compare(password, this.password)
-//     .then(valid => valid ? this : null);
-// };
+//   else {
+//     Promise.reject();
+//   }
+// } ;
 
 
 
-// users.statics.list =  async function(){
-//   let results = await this.find({});
-//   return results;
-// };
+// //////// bearer auth /////
+// users.statics.authbearerToken = async function(token){
+//   try{
+//     let tokenObject = await jwt.verify(token , SECRET);
 
-// users.statics.authenticateToken = async function(token){
-//   try {
-//     let tokenObject = jwt.verify(token, process.env.SECRET);
-
-//     if (tokenObject.username) {
+//     if(tokenObject){
 //       return Promise.resolve(tokenObject);
-//     } else {
+//     } else{
 //       return Promise.reject();
 //     }
-//   } catch (err) {
-//     return Promise.reject();
+
+//   }catch(err){
+//     console.log(err);
 //   }
+
 // };
-// module.exports = mongoose.model('users',users);
+
+// //   Method to generate a Token following a valid login
+// users.statics.generateToken = function(user) {
+
+//   let userInfo = {
+//     // id: user._id,
+//     username : this.username,
+//     password : this.password,
+//     role : this.role,
+//   };
+
+//   let token = jwt.sign( userInfo, SECRET);
+
+
+//   return token;
+// };
+
+// // users.statics.createFromOauth = function(email) {
+// //   if (!email) { return Promise.reject('Validation Error'); }
+
+// //   return this.findOne({ email })
+// //     .then(user => {
+// //       if (!user) { throw new Error('User Not Found'); }
+// //       console.log('Welcome Back', user.username);
+// //       return user;
+// //     })
+// //     .catch( () => {
+// //       console.log('Creating new user');
+// //       let username = email;
+// //       let password = 'none';
+// //       return this.create({ username, password, email });
+// //     });
+
+// // };
+
+// // users.statics.decode = function(token) {
+// //   let decoded = jwt_decode(token);
+// //   return decoded;
+// // };
+
+// // users.statics.authenticator = function(auth) {
+// //   // let query = { username: auth.username };
+// //   return this.findOne({ username: auth.username })
+// //     .then(user => {
+// //       console.log('user', user);
+// //       return user.passwordComparator(auth.password);
+// //     })
+// //     .catch(console.error);
+// // };
+
+// // users.methods.passwordComparator = function(pass) {
+// //   return bcrypt.compare(pass, this.password)
+// //     .then(valid => {
+// //       // console.log(this)
+// //       return valid ? this : null;
+// //     })
+// //     .catch(console.error);
+// // };
+
+// // users.statics.siginTokenGenerator = function(user) {
+// //   console.log('token');
+// //   let token = {
+// //     id: user._id,
+// //     username: user.username,
+// //     email: user.email,
+// //   };
+// //   return jwt.sign(token, SECRET);
+// // };
+// // users.methods.signupTokenGenerator = function(user) {
+// //   let token = {
+// //     id: user._id,
+// //     username: user.username,
+// //     email: user.email,
+// //   };
+// //   return jwt.sign(token, SECRET);
+// // };
+
+// // users.statics.authenticateToken = async function(token) {
+ 
+// //   try {
+// //     let tokenObject = jwt.verify(token, SECRET);
+// //     if (tokenObject.username) {
+// //       return Promise.resolve(tokenObject.username);
+// //     } else {
+// //       return Promise.reject();
+// //     }
+// //   } catch (e) {
+// //     return Promise.reject();
+// //   }
+// // };
 
 
 
-///////////////////google oauth
+
+// module.exports = mongoose.model('users', users);
+
+
+
 'use strict';
 
-require('dotenv').config();
-const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+const mongoose = require('mongoose');
 const jwt_decode = require('jwt-decode');
+let SECRET = 'cool mai' ;
 
 
-
-const SECRET = process.env.SECRET || 'obada';
-
-const user = new mongoose.Schema({
-  username: { type: String, required: true },
-  password: { type: String, required: true },
-  ///////add the user roles
-  role: { type: String, required: true, default: 'user', enum: ['user', 'admin'] },
-  email: { type: String },
+const users = new mongoose.Schema({
+  username: { type: String, required: true, unique: true },
+  password: { type: String, required: true } ,
+  role: { type: String , required: true ,default:'guest', enum: ['admin' , 'guest' , 'user'] } ,
+  
 });
 
-user.pre('save', async function() {
-  //this.isModified('password')
-  ///chek if it has a user schema
-  if (!this.username) {
-    this.password = await bcrypt.hash(this.password, 10);
+users.statics.checkCpabilities = (capability , role) =>{
+
+  console.log('capability inside checkcapabilites' , capability);
+  console.log('role  inside checkcapabilites ' , role);
+  let admin = [ 'read' , 'create' , 'update' , 'delete'];
+  let user = ['read' , 'create'];
+  let guest = ['read'];
+
+  if(role === 'admin'){
+    for(let i= 0 ; i< admin.length ; i++){
+      if(admin[i] === capability) return true ; 
+    }
   }
-  return Promise.reject();
-});
-//////// add the genaratetoken method
-user.methods.generateToken = function(user) {
-  let userData = {
-    username: user.username,
-    capabilities: user.role,
-  };
-    // console.log(userData);
-  let token = jwt.sign(userData, SECRET);
+  if(role === 'user'){
+    for(let i= 0 ; i< user.length ; i++){
+      if( user[i] === capability ) return true ;
+    }
+  }
+  if ( role === 'guest'){
+    for(let i = 0 ; i <guest.length ; i++){
+      if(guest[i] === capability)  return true ;
+    }
+  }
+};
+
+
+users.statics.authenticateBasic = async function(user , password){
+
+  let foundUser = await this.find({username: user});
+  
+
+  if (foundUser) {
+    let valid = 
+    bcrypt.compare(password, foundUser[0].password);
+    return valid ? foundUser[0] : Promise.reject();
+  }
+  else {
+    Promise.reject();
+  }
+} ;
+
+
+
+//////// bearer auth /////
+users.statics.authbearerToken = async function(token){
+  try{
+    let tokenObject = await jwt.verify(token , SECRET);
+  
+if(tokenObject){
+  return Promise.resolve(tokenObject)
+} else{
+  return Promise.reject()
+}
+  
+  }catch(err){
+    console.log(err);
+  }
+
+}; 
+
+//   Method to generate a Token following a valid login
+users.statics.generateToken = function(user) {
+ 
+  let userInfo= {
+    // id: user._id,
+    username : this.username,
+    password : this.password,
+    role : this.role,
+    }
+  
+  let token = jwt.sign( userInfo, SECRET);
+
+  
   return token;
 };
 
-user.statics.createFromOauth = function(email) {
+users.pre('save', async function () {
+  if (this.isModified('password')) {
+    this.password = await bcrypt.hash(this.password, 5);
+  }
+  return Promise.reject();
+});
+
+users.statics.createFromOauth = function (email) {
   if (!email) { return Promise.reject('Validation Error'); }
 
   return this.findOne({ email })
@@ -128,7 +280,7 @@ user.statics.createFromOauth = function(email) {
       console.log('Welcome Back', user.username);
       return user;
     })
-    .catch( () => {
+    .catch(error => {
       console.log('Creating new user');
       let username = email;
       let password = 'none';
@@ -137,32 +289,31 @@ user.statics.createFromOauth = function(email) {
 
 };
 
-user.statics.decode = function(token) {
+users.statics.decode = function (token) {
   let decoded = jwt_decode(token);
   return decoded;
 };
 
-user.statics.authenticator = function(auth) {
-  // let query = { username: auth.username };
-  return this.findOne({ username: auth.username })
+users.statics.authenticator = function (auth) {
+  let query = { username: auth.username };
+  return this.findOne(query)
     .then(user => {
-      console.log('user', user);
+    console.log('here',user);
+
       return user.passwordComparator(auth.password);
     })
     .catch(console.error);
 };
 
-user.methods.passwordComparator = function(pass) {
+users.methods.passwordComparator = function (pass) {
   return bcrypt.compare(pass, this.password)
     .then(valid => {
-      // console.log(this)
       return valid ? this : null;
     })
     .catch(console.error);
 };
 
-user.statics.siginTokenGenerator = function(user) {
-  console.log('token');
+users.statics.siginTokenGenerator = function (user) {
   let token = {
     id: user._id,
     username: user.username,
@@ -170,16 +321,19 @@ user.statics.siginTokenGenerator = function(user) {
   };
   return jwt.sign(token, SECRET);
 };
-user.methods.signupTokenGenerator = function(user) {
+users.methods.signupTokenGenerator = function (user) {
+  console.log('user.js')
   let token = {
     id: user._id,
     username: user.username,
     email: user.email,
   };
+  console.log('token',token);
+  
   return jwt.sign(token, SECRET);
 };
 
-user.statics.authenticateToken = async function(token) {
+users.statics.authenticateToken = async function (token) {
   try {
     let tokenObject = jwt.verify(token, SECRET);
     if (tokenObject.username) {
@@ -192,4 +346,5 @@ user.statics.authenticateToken = async function(token) {
   }
 };
 
-module.exports = mongoose.model('user', user);
+
+module.exports = mongoose.model('users', users);

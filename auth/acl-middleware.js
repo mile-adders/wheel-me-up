@@ -5,15 +5,20 @@ const users = require('./users.js');
 module.exports = (capability) => {
 
   return (req, res, next) => {
-    try {
-      if (users.checkCapabilities(capability, req.user.capabilities)) {
+
+    try{
+
+      if (users.checkCpabilities(capability, req.user.role)) {
         next();
-      }
-      else {
+      } else {
         next('Access Denied');
+
+
       }
-    } catch (e) {
-      next('Invalid Login');
+    }catch (e) {
+      console.log(e);
+
     }
   };
+
 };

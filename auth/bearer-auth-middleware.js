@@ -1,37 +1,16 @@
-  // 'use strict';
+'use strict' ;
+const users = require('./users.js');
 
-  // const Users = require('./users.js');
+module.exports = (req , res , next) =>{
+    if (!req.headers.authorization){(e) =>{console.log(e)}}
 
-  // module.exports = (req, res, next) => {
-  //   if (!req.headers.authorization) { next('invalid login'); }
-
-  //   let token = req.headers.authorization.split(' ').pop();
-
-  //   Users.authenticateToken(token)
-  //     .then(validUser => {
-  //       req.user = validUser;
-  //       next();
-  //     }).catch(err => next(err));
-  // };
+   let token = req.headers.authorization.split(' ').pop()
 
 
-
-  ///////////////////////google 
-
-
-  'use strict';
-
-  const Users = require('./users.js');
-
-  module.exports = (req, res, next) => {
-      if (!req.headers.authorization) { next('Nope'); }
-
-      let token = req.headers.authorization.split(' ').pop();
-      Users.authenticateToken(token)
-          .then(validUser => {
-              console.log('sss', validUser);
-              req.user = validUser;
-              next();
-          })
-          .catch(e => next(e));
-  };
+users.authbearerToken(token)
+.then(validUser =>{
+    console.log('validUser authbearer token' , validUser);
+    req.user = validUser ;
+    next();
+}).catch(err => next(err));
+};
