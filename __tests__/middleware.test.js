@@ -25,7 +25,6 @@ describe('Middleware tests', () => {
         expect(data.status).toBe(500);
       }).catch(console.error);
   });
-
-  // it( for the logger middleware)
+  
 });
 

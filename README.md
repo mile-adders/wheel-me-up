@@ -19,7 +19,6 @@ as a car owner you can post, view existing cars, edit existing cars data, delete
 all this functionality is done by using NodeJS, and Express. 
 
 ---------------------------------
-
 ## Tools Used
 Microsoft Visual Studio
 
@@ -27,7 +26,43 @@ Microsoft Visual Studio
 - Express 
 - mongoDB
 - Swagger
+- stripe 
+- Bootstrap 4 
 
+---------------------------
+## User Stories 
+ God Bless Trello!!
+[Trello](https://trello.com/b/nMNPPInv/wheel-me-up)
+
+
+
+---------------------------------
+## Future WireFrames 
+
+### Main page
+![Main Page](assets/wheelmeup-homepage.PNG)
+
+### Sign up
+![Sign up](assets/wheelmeup-signuppage.PNG)
+
+### Guest page
+![Guest Page](assets/wheelmeup-guestpage.PNG)
+
+### The Mile Adders
+![Team Page](assets/wheelmeup-teampage.PNG)
+
+---------------------------
+## Data Flow (Frontend, Backend, REST API)
+![Data-Flow-Backend](assets/data-model.PNG)
+![Data-Modeling](assets/database.PNG)
+
+---------------------------
+## Data Model
+
+### Overall Project Schema
+Wheel me up have multiple databases, combined with virtual keys, the user database contains the user, email, car (which acts as the virtual), dailyRentTime, and dateOut. this is the user's schema, which will have the sign in data, the car rented which connects the schema to the car owner/ car company schema. the virtual field in the owner schema/car company, is the name, the car owner schema have name (virtual), brand, type, year, dateAvailable, and price_to_rent. when the user rents a car the car field will contain all the car's data. 
+
+![Database Schema](assets/database-connection.PNG)
 ---------------------------------
 ## Getting Started
 
@@ -49,6 +84,7 @@ Database mongoDB
 cd YourRepo/YourProject
 npm run start
 ```
+
 ---------------------------------
 ### Prerequisites
 
@@ -72,50 +108,6 @@ What things you need to install the software and how to install them
 ```
 
 ---------------------------------
-## TESTS 
-
-in the package.json there is a jest test running code
-
-```
-
-npm run test
-```
-
-### API endpoints Tests
-
-  Here is an example of a test for an API Endpoint 
-
-```
-let users = {
-  admin: {username: 'admin', password: 'password', role: 'admin'},
-  editor: {username: 'editor', password: 'password', role: 'editor'},
-  user: {username: 'user', password: 'password', role: 'user'},
-};
-describe('Auth Router', () => {
-  Object.keys(users).forEach( userType => {
-    describe(`${userType} users`, () => {
-      let id;
-      let token;
-      let resultsToken;
-      it('Can create user', () => {
-        return mockRequest.post('/signup')
-          .send(users[userType])
-          .then(results => {
-            console.log('result', results.text);
-            resultsToken = results.text;
-             let result = async function (){
-            token =  await jwt.verify(results.text, process.env.SECRET)
-            console.log(token)
-            id = token.id;
-            expect(token.id).toEqual(id);
-             }
-           });
-      });
-    });
-  });
-});
-```
----------------------------------
 ### Installing
 After Cloning the repo and knowing the Prerequisites that are necessary, downloading the prerequisites is a **MUST!!**
 
@@ -137,6 +129,7 @@ if it the package.json is not present
 npm init -y
 npm i [all Prerequisites needed]
 ```
+
 ---------------------------
 ## App Usage 
  At this stage Wheel me Up is a Pure Backend Full Stack Web Application, so to use the app functionality Swagger inspector will be used, as per the (requirements.md)[requirements.md] document, the Application's Scope is to create an application that allows a user to sign up as a car renter, or a car renter. the app is built on the GET, POST, PUT, and DELETE methods. these methods are access controlled, the car company can get, put, update, and delete. and the renter can only read, and delete. each type of users have a separate schema. both schemas are connected by virtual. a complete list of API hits is provided in details. 
@@ -225,41 +218,59 @@ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE1ODIxMTMyNzB9.gUPPDS_696DAel8exh
     }
 ```  
 ---------------------------------
-## Future WireFrames 
+## Extra Features
 
-### Main page
-![Main Page](assets/wheelmeup-homepage.PNG)
+ ### Chat Room 
 
-### Sign up
-![Sign up](assets/wheelmeup-signuppage.PNG)
+ ### Our crown Jewel Stripe Payment
 
-### Guest page
-![Guest Page](assets/wheelmeup-guestpage.PNG)
+---------------------------------
+## TESTS 
 
-### The Mile Adders
-![Team Page](assets/wheelmeup-teampage.PNG)
+in the package.json there is a jest test running code
+
+```
+
+npm run test
+```
+
+---------------------------------
+### API endpoints Tests
+
+  Here is an example of a test for an API Endpoint 
+
+```
+let users = {
+  admin: {username: 'admin', password: 'password', role: 'admin'},
+  editor: {username: 'editor', password: 'password', role: 'editor'},
+  user: {username: 'user', password: 'password', role: 'user'},
+};
+describe('Auth Router', () => {
+  Object.keys(users).forEach( userType => {
+    describe(`${userType} users`, () => {
+      let id;
+      let token;
+      let resultsToken;
+      it('Can create user', () => {
+        return mockRequest.post('/signup')
+          .send(users[userType])
+          .then(results => {
+            console.log('result', results.text);
+            resultsToken = results.text;
+             let result = async function (){
+            token =  await jwt.verify(results.text, process.env.SECRET)
+            console.log(token)
+            id = token.id;
+            expect(token.id).toEqual(id);
+             }
+           });
+      });
+    });
+  });
+});
+```
 
 ---------------------------
-## User Stories 
- God Bless Trello!!
-[Trello](https://trello.com/b/nMNPPInv/wheel-me-up)
-
----------------------------
-## Data Flow (Frontend, Backend, REST API)
-![Data-Flow-Backend](assets/data-model.PNG)
-![Data-Modeling](assets/database.PNG)
-
----------------------------
-## Data Model
-
-### Overall Project Schema
-Wheel me up have multiple databases, combined with virtual keys, the user database contains the user, email, car (which acts as the virtual), dailyRentTime, and dateOut. this is the user's schema, which will have the sign in data, the car rented which connects the schema to the car owner/ car company schema. the virtual field in the owner schema/car company, is the name, the car owner schema have name (virtual), brand, type, year, dateAvailable, and price_to_rent. when the user rents a car the car field will contain all the car's data. 
-
-![Database Schema](assets/database-connection.PNG)
-
----------------------------
-
-
 ## Authors "The Mile Adders"
 - Ahmad K. Al-Mahasneh
 - Obada M. Al-Matrami
