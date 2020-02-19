@@ -1,0 +1,27 @@
+<section class="py-2">
+  <div class="row">
+    <div class="col-md-6 text-center">
+      <h1 class="display-3 mt-3 pt-5">
+      Wheel-Me-Up Car rentals-app Made By Mile Adder-Team
+      </h1><p class="lead">the coolest Car-rentals-app</p>
+      <div class="col-md-6">
+        <img src="/public/car-rental-logo-png-6.png" alt="" class="img-fluid">
+      </div>
+      <form action="/charge" method="POST">
+        <script
+          src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+          data-key="pk_test_BpHJMEmxSznJeGwyA5K28Bvw00vZbduZs6"
+          data-amount="35000"
+          data-name="obada al-matrami"
+          data-description="By Mile-Adder team"
+          data-locale="auto">
+        </script>
+        <script>
+          // Hide default stripe button
+          document.getElementsByClassName('stripe-button-el')[0].style.display = 'none';
+        </script>
+        <button type="submit" class="btn btn-outline-dark text-white btn-lg">Rent For $350</button>
+      </form>
+    </div>
+
+</section>
