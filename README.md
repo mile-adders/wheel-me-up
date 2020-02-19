@@ -95,7 +95,7 @@ npm run start
  - POST request to /signup route 
     in this case the user is an admin with full CRUD Capabilities,
 
- ```
+```
 
  {
     "username": "AhmadKhaleel",
@@ -104,15 +104,14 @@ npm run start
 }
 
 output:
-
 eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE1ODIxMTMwNDl9.IUe2QXNbfAEZqgSLRpE4kh7YGqwTdGEUYzoTT2A1K0Q
 
 expected response status 200
- ```     
+```     
 
   in the case of signing up as a user, with a Read and create capabilities. 
 
-   ```
+```
 
   {
     "username": "MaiYusuf",
@@ -125,11 +124,11 @@ output:
 eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE1ODIxMTMyNzB9.gUPPDS_696DAel8exh1FsQbeMhJHEwoIfzoKNmkSoGU
 
 expected response status 200
- ```    
+```    
 - POST request for the /signin route
 sign in as an admin and a user give the same response which is the same assigned token for the signed up username. 
 
-  ```
+```
 
   {
     "username": "MaiYusuf",
@@ -141,12 +140,12 @@ output:
 eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE1ODIxMTMyNzB9.gUPPDS_696DAel8exh1FsQbeMhJHEwoIfzoKNmkSoGU
 
 expected response status 200
- ```
- 
+```
+
 - get request For the /users route
  which will return all the signed up users in the DataBase 
 
-  ```
+```
  
    {
         "role": "guest",
@@ -178,7 +177,7 @@ expected response status 200
     }
 
 expeted response status 200
- ```  
+```  
 
 
 ---------------------------
