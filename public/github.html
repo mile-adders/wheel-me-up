@@ -10,17 +10,20 @@
     <main>
         <h1>My Login Page </h1>
 
-        <a id="oauth" href="#">Login me to MY-App</a>
-
+        <a id="oauth" target="_blank" href="#">Login me to MY-App</a>
+        <div>
+            <h1>Login Page</h1>
+            <a id="id" href="#">Login To The App</a>
+        </div>
     </main>
     <script>
         let URL = "https://github.com/login/oauth/authorize";
 
         let options = {
-            client_id: 'd01e4f9c0a12cc7829b2',
+            client_id: '0ffe81316042a7a809ac',
             redirect_uri: 'http://localhost:3000/oauth',
             scope: 'read:user',
-            state: 'myfirst401loginpage'
+            state: '401appconsent'
         }
 
         let QueryString = Object.keys(options).map((key) => {

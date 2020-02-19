@@ -8,7 +8,7 @@ const car = mongoose.Schema({
   brand :{ type : String , require:true },
   type :{ type :String , require:true  } ,
   year :{ type : Number , require :true} ,
-  dateavailable :{ type :Date , require: true},
+  dateavailable :{ type : Date , require: true},
   price_for_rent : { type : String , require : true},
 }, { toObject: { virtuals: true}, toJSON: { virtuals: true }});
 

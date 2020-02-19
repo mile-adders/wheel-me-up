@@ -1,21 +1,26 @@
+/* eslint-disable camelcase */
 /* eslint-disable no-unused-vars */
 'use strict';
 const express = require('express');
 
 const car_company = require('../model/car-schema-model.js');
 const userCar = require('../model/usercar-schema-model.js');
-
+const accessControlList = require('../auth/acl-middleware.js');
+const bearerAuth = require('../auth/bearer-auth-middleware.js');
+const basicAuth = require('../auth/basic-auth-middleware.js');
 
 const router = express.Router();
 
-router.get('/car-company', getCar);
-router.get('/car-company/:_id', getCarByIdea);
-router.post('/car-company', postCar);
-router.put('/car-company/:_id', updatecar );
-router.delete('/car-company/:_id', deletecar);
-router.get('/user-car', get_rentCar);
-router.post('/user-car', post_rentCar);
-router.delete('/user-car/:_id', delete_rentCar);
+router.get('/car-company',basicAuth, accessControlList('read') , getCar);
+router.get('/car-company/:_id',basicAuth,accessControlList('read'), getCarByIdea);
+router.post('/car-company',basicAuth,accessControlList('create') ,postCar);
+router.put('/car-company/:_id',basicAuth, accessControlList('update') , updatecar );
+router.delete('/car-company/:_id',basicAuth,accessControlList('delete'), deletecar);
+
+
+router.get('/user-car',basicAuth,accessControlList('read'), get_rentCar);
+router.post('/user-car',basicAuth,accessControlList('create'), post_rentCar);
+router.delete('/user-car/:_id',basicAuth,accessControlList('delete'), delete_rentCar);
 
 
 let newCar = new car_company; 
@@ -54,7 +59,7 @@ function getCarByIdea(req, res, next) {
   // console.log('getby.id',newCar.get(req.params._id))
   newCar.get(req.params._id)
     .then(data => {
-      console.log('results' , data);
+      // console.log('results' , data);
       res.status(200).json(data);
     })
     .catch(next);
@@ -85,12 +90,12 @@ function postCar(req, res, next) {
  */
 
 function updatecar (req , res , next){
-  console.log('req.body',req.body);
+  // console.log('req.body',req.body);
   newCar.update(req.params._id , req.body)
   // console.log('req.params.id',req.params._id);
   // console.log('req.body',req.body)
     .then( results =>{
-      console.log('results', results);
+      // console.log('results', results);
       res.status(200).json(results);
     })
     .catch(next);
