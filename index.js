@@ -1,4 +1,3 @@
-  
 'use strict';
 
 require('dotenv').config();
@@ -11,5 +10,6 @@ const options = {
   useCreateIndex: true,
   useUnifiedTopology: true,
 };
+
 mongoose.connect(process.env.MONGODB_URI, options);
 server.start(process.env.PORT);

@@ -3,6 +3,7 @@
 
 const express = require('express');
 const authRouter = express.Router();
+
 const Users = require('./users.js');
 const basicAuth = require('./basic-auth-middleware.js');
 const oauth = require('./oauth-middleware.js');

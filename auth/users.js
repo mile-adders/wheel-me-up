@@ -66,14 +66,12 @@ users.statics.authbearerToken = async function(token) {
 //   Method to generate a Token following a valid login
 users.statics.generateToken = function(user) {
   let userInfo = {
-    // id: user._id,
     username: this.username,
     password: this.password,
     role: this.role,
   };
 
   let token = jwt.sign(userInfo, SECRET);
-
   return token;
 };
 

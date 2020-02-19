@@ -1,4 +1,4 @@
-'use strict ' ;
+'use strict' ;
 
 class Model {
   constructor(schema) {
@@ -6,20 +6,15 @@ class Model {
   }
 
   jsonSchema() {
-      
-    // console.log(typeof this.schema.jsonSchema);
     return typeof this.schema.jsonSchema === 'function' ? this.schema.jsonSchema() : {};
   }
 
   get(_id) {
     if(_id){
       return this.schema.findOne({_id});
-
     }else{
       return this.schema.find({});
     }
-    // let queryObject = _id ? { _id } : {};
-    // return this.schema.find(queryObject);
   }
 
   create(record) {
@@ -35,7 +30,5 @@ class Model {
     return this.schema.findByIdAndDelete(_id);
   }
 }
-// console.log("hi" );
-
 
 module.exports = Model;

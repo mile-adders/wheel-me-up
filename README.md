@@ -6,7 +6,7 @@
 ---------------------------------
 ## We are deployed on 3000
 
-(wheel me up URL)[http://localhost:3000/]
+!(wheel me up URL)[http://localhost:3000/]
 
 ---------------------------------
 ## Wheel Me Up
@@ -97,6 +97,7 @@ npm run start
  - POST request to /signup route 
     in this case the user is an admin with full CRUD Capabilities,
  ```
+
  {
     "username": "AhmadKhaleel",
    "password": "12345" ,
@@ -113,6 +114,7 @@ expeted response status 200
   in the case of signing up as a user, with a Read and create capabilities. 
 
    ```
+
   {
     "username": "MaiYusuf",
    "password": "281" ,
@@ -129,6 +131,7 @@ expeted response status 200
 sign in as an admin and a user give the same response which is the same assigned token for the signed up username. 
 
   ```
+
   {
     "username": "MaiYusuf",
    "password": "281" 
@@ -144,6 +147,7 @@ expeted response status 200
  which will return all the signed up users in the DataBase 
 
   ```
+ 
    {
         "role": "guest",
         "_id": "5e4a720ec6eaee5e38b25958",
@@ -191,6 +195,7 @@ expeted response status 200
 
 ### Overall Project Schema
 Wheel me up have multiple databases, combined with virtual keys, the user database contains the user, email, car (which acts as the virtual), dailyRentTime, and dateOut. this is the user's schema, which will have the sign in data, the car rented which connects the schema to the car owner/ car company schema. the virtual field in the owner schema/car company, is the name, the car owner schema have name (virtual), brand, type, year, dateAvailable, and price_to_rent. when the user rents a car the car field will contain all the car's data. 
+
 ![Database Schema](assets/database-connection.PNG)
 
 ---------------------------
@@ -212,6 +217,6 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE) f
 
 * Mr. Brain Nations
 * The instructional team
-* Qusai A. Al-Hanaktah (Backend Master)[https://github.com/Qusai-alhanaktah]
+* Qusai A. Al-Hanaktah !(Backend Master)[https://github.com/Qusai-alhanaktah]
 
 ------------------------------
