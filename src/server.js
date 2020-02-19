@@ -14,6 +14,7 @@ const logger = require('../middleware/logger.js');
 
 // Routers
 const authRouter = require('../auth/router.js');
+const carRoute = require('../api-routes/api-routes.js');
 
 // Prepare the express app
 const app = express();
@@ -23,10 +24,6 @@ app.use(cors());
 app.use(morgan('dev'));
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
-
-
-// Routes
-const carRoute = require('../api-routes/api-routes.js');
 
 // app.use(apiRouter);
 app.use(authRouter);

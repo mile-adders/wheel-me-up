@@ -131,7 +131,7 @@ module.exports = router;/* eslint-disable no-undef */
 // });
 
 // // eslint-disable-next-line no-unused-vars
-// authRouter.post('/signin', auth , (req, res, next) => {
+// authRouter.post('/signin', auth , (re q, res, next) => {
 //     console.log('\n\n\n inside signin post\n', req.token, '\n\n\n');
     
 //   res.send(req.token);

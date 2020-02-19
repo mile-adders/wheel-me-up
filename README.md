@@ -6,7 +6,7 @@
 ---------------------------------
 ## We are deployed on 3000
 
-[http://localhost:3000/]
+(wheel me up URL)[http://localhost:3000/]
 
 ---------------------------------
 ## Wheel Me Up
@@ -30,6 +30,27 @@ Microsoft Visual Studio
 - mongoDB
 - Swagger
 
+---------------------------------
+### Prerequisites
+
+What things you need to install the software and how to install them
+
+```
+    - @code-fellows/supergoose
+    - base-64
+    - bcryptjs
+    - cors
+    - dotenv
+    - eslint
+    - express
+    - jest
+    - jsonwebtoken
+    - mongoose
+    - morgan
+    - supergoose
+    - jsdocs
+    - superagent
+```
 
 ---------------------------------
 
@@ -48,10 +69,10 @@ Install all dependencies needed for the project.
 ```
 Database mongoDB
 ```
-* The database is used to store all the necessary data needed like, the signup and signin information and and the car renter and owner information these two objects are joined together through the car name *
+* The database is used to store all the necessary data needed like, the Sign up and Sign in information and and the car renter and owner information these two objects are joined together through the car name *
 ```
 cd YourRepo/YourProject
-npm start
+npm run start
 ```
 
 ---------------------------------
@@ -73,18 +94,19 @@ npm start
 ---------------------------
 
 ## User Stories 
-[https://trello.com/b/nMNPPInv/wheel-me-up]
+(Trello)[https://trello.com/b/nMNPPInv/wheel-me-up]
 
 ---------------------------
 ## Data Flow (Frontend, Backend, REST API)
-![Data-Modeling](assets/wheel-me-up.jpg)
+![Data-Flow-Backend](assets/data-model.PNG)
+![Data-Modeling](assets/database.PNG)
 
 ---------------------------
 ## Data Model
 
 ### Overall Project Schema
-***[Add a description of your DB schema. Explain the relationships to me.]***
-![Database Schema](/assets/img/ERD.png)
+Wheel me up have multiple databases, combined with virtual keys, the user database contains the user, email, car (which acts as the virtual), dailyRentTime, and dateOut. this is the user's schema, which will have the sign in data, the car rented which connects the schema to the car owner/ car company schema. the virtual field in the owner schema/car company, is the name, the car owner schema have name (virtual), brand, type, year, dateAvailable, and price_to_rent. when the user rents a car the car field will contain all the car's data. 
+![Database Schema](assets/database-connection.PNG)
 
 ---------------------------
 
@@ -94,5 +116,17 @@ npm start
 - Obada M. Al-Matrami
 - Mai Y. Al-Shagarain
 - Bayan M. Al-shaqareen
+
+------------------------------
+## License
+
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE) file for details
+
+------------------------------
+## Acknowledgments
+
+* Mr. Brain Nations
+* The instructional team
+* Qusai A. Al-Hanaktah (Backend Master)[https://github.com/Qusai-alhanaktah]
 
 ------------------------------
