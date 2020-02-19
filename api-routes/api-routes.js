@@ -16,8 +16,6 @@ router.get('/car-company/:_id',basicAuth,accessControlList('read'), getCarByIdea
 router.post('/car-company',basicAuth,accessControlList('create') ,postCar);
 router.put('/car-company/:_id',basicAuth, accessControlList('update') , updatecar );
 router.delete('/car-company/:_id',basicAuth,accessControlList('delete'), deletecar);
-
-
 router.get('/user-car',basicAuth,accessControlList('read'), get_rentCar);
 router.post('/user-car',basicAuth,accessControlList('create'), post_rentCar);
 router.delete('/user-car/:_id',basicAuth,accessControlList('delete'), delete_rentCar);
@@ -25,7 +23,9 @@ router.delete('/user-car/:_id',basicAuth,accessControlList('delete'), delete_ren
 
 let newCar = new car_company; 
 let newUser = new userCar ; 
+
 /////  read all data 
+
 /**
  * function 
  * read all data ( means show hole data in our api )
@@ -34,7 +34,6 @@ let newUser = new userCar ;
  * @params {function} next 
  */
 function getCar(req, res , next) {
-  // console.log('hi')
   newCar.get()
     .then(data => {
       console.log('data in get function' , data);
@@ -56,10 +55,8 @@ function getCar(req, res , next) {
  * @params {function} next 
  */
 function getCarByIdea(req, res, next) {
-  // console.log('getby.id',newCar.get(req.params._id))
   newCar.get(req.params._id)
     .then(data => {
-      // console.log('results' , data);
       res.status(200).json(data);
     })
     .catch(next);
@@ -90,16 +87,13 @@ function postCar(req, res, next) {
  */
 
 function updatecar (req , res , next){
-  // console.log('req.body',req.body);
   newCar.update(req.params._id , req.body)
-  // console.log('req.params.id',req.params._id);
-  // console.log('req.body',req.body)
     .then( results =>{
-      // console.log('results', results);
       res.status(200).json(results);
     })
     .catch(next);
 }
+
 /**
  * function
  * it's delete an item 
@@ -115,7 +109,8 @@ function deletecar (req , res , next ){
     })
     .catch(next);
 }
-//////////////////////////////// rent-car function for api
+
+// rent-car function for api
 /**
  * this function can create information about rent car 
  * @param {object} req 
@@ -150,12 +145,9 @@ function get_rentCar(req , res , next){
  * @param {middleware functions} next 
  */
 function delete_rentCar (req ,res , next){
-  // console.log('ffffff')
   newUser.delete(req.params._id)
     .then(data =>{
       res.status(200).json(data);
-
-      // res.status(200).send('Deleted');
     })
     .catch(next);
 }

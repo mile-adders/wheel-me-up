@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 'use strict';
 
 const base64 = require('base-64');
@@ -16,8 +17,8 @@ module.exports = (req, res, next) => {
   users.authenticateBasic(user, password)
     .then(validUser => {
      
-            req.token = users.generateToken(validUser);
-            req.user = validUser;
+      req.token = users.generateToken(validUser);
+      req.user = validUser;
 
       
       next();

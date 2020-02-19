@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 'use strict';
 
 const express = require('express');
@@ -6,9 +7,7 @@ const Users = require('./users.js');
 const basicAuth = require('./basic-auth-middleware.js');
 const oauth = require('./oauth-middleware.js');
 const bearerAuth = require('./bearer-auth-middleware.js');
-// eslint-disable-next-line no-unused-vars
 const accessControlList = require('./acl-middleware.js');
-
 
 authRouter.post('/signup', (req, res, next) => {
   let user = new Users(req.body);
@@ -20,22 +19,22 @@ authRouter.post('/signup', (req, res, next) => {
     }).catch(next);
 });
 
-
 function googleHandler(req, res, next) {
   console.log('here');
   res.status(200).send(req.user.validToken);
 }
+
 authRouter.post('/signin', basicAuth, bearerAuth, (req, res) => {
   res.status(200).send(req.token);
 });
 
 authRouter.get('/users', (req, res) => {
-  Users.list()
+  Users.find()
     .then(data => {
       res.status(200).json(data);
     });
-});
 
+});
 authRouter.get('/oauth', oauth, (req, res) => {
   res.status(200).send(req.token);
 });

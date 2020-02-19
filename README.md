@@ -76,8 +76,7 @@ npm run start
 ```
 
 ---------------------------------
-
-## Usage
+## Future WireFrames 
 
 ### Main page
 ![Main Page](assets/wheelmeup-homepage.PNG)
@@ -92,9 +91,95 @@ npm run start
 ![Team Page](assets/wheelmeup-teampage.PNG)
 
 ---------------------------
+## App Usage 
+ At this stage Wheel me Up is a Pure Backend Full Stack Web Application, so to use the app functionality Swagger inspector will be used, as per the (requirements.md)[requirements.md] document, the Application's Scope is to create an application that allows a user to sign up as a car renter, or a car renter. the app is built on the GET, POST, PUT, and DELETE methods. these methods are access controlled, the car company can get, put, update, and delete. and the renter can only read, and delete. each type of users have a separate schema. both schemas are connected by virtual. a complete list of API hits is provided in details. 
 
+ - POST request to /signup route 
+    in this case the user is an admin with full CRUD Capabilities,
+ ```
+ {
+    "username": "AhmadKhaleel",
+   "password": "12345" ,
+    "role":"admin"
+}
+
+output:
+
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE1ODIxMTMwNDl9.IUe2QXNbfAEZqgSLRpE4kh7YGqwTdGEUYzoTT2A1K0Q
+
+expeted response status 200
+ ```     
+
+  in the case of signing up as a user, with a Read and create capabilities. 
+
+   ```
+  {
+    "username": "MaiYusuf",
+   "password": "281" ,
+    "role":"user"
+}
+
+output:
+
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE1ODIxMTMyNzB9.gUPPDS_696DAel8exh1FsQbeMhJHEwoIfzoKNmkSoGU
+
+expeted response status 200
+ ```    
+- POST request for the /signin route
+sign in as an admin and a user give the same response which is the same assigned token for the signed up username. 
+
+  ```
+  {
+    "username": "MaiYusuf",
+   "password": "281" 
+  }
+
+output:
+
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE1ODIxMTMyNzB9.gUPPDS_696DAel8exh1FsQbeMhJHEwoIfzoKNmkSoGU
+
+expeted response status 200
+ ```   
+- get request For the /users route
+ which will return all the signed up users in the DataBase 
+
+  ```
+   {
+        "role": "guest",
+        "_id": "5e4a720ec6eaee5e38b25958",
+        "username": "bayan95",
+        "password": "123",
+        "__v": 0
+    },
+    {
+        "role": "guest",
+        "_id": "5e4d00420688ce6ffc645586",
+        "username": "obada.matrami92@gmail.com",
+        "password": "$2a$05$bxMv/CmApvE8tyq9mrb0Q.MKdW3u1S46.eGbW/AVhvTGYcbnlm71y",
+        "__v": 0
+    },
+    {
+        "role": "admin",
+        "_id": "5e4d2119313c8071b3037e41",
+        "username": "AhmadKhaleel",
+        "password": "$2a$05$iIYQsLkKf09ZI16nj6olvOD61Ea./RvCbOATW2d90/gkelxzOZXeW",
+        "__v": 0
+    },
+    {
+        "role": "user",
+        "_id": "5e4d21f6313c8071b3037e42",
+        "username": "MaiYusuf",
+        "password": "$2a$05$Pzx7YW9gXjoKnMFU6TA.oOQs5YEMKZrvEFnM.hf0m9tK9XLxZTiQe",
+        "__v": 0
+    }
+
+expeted response status 200
+ ```  
+
+
+---------------------------
 ## User Stories 
-(Trello)[https://trello.com/b/nMNPPInv/wheel-me-up]
+!(Trello)[https://trello.com/b/nMNPPInv/wheel-me-up]
 
 ---------------------------
 ## Data Flow (Frontend, Backend, REST API)

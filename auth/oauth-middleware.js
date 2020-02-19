@@ -1,11 +1,8 @@
-
 //*///////////google ////////
 'use strict';
 
 const superagent = require('superagent');
-
 const Users = require('./users.js');
-
 const GTS = 'https://www.googleapis.com/oauth2/v4/token';
 
 module.exports = async function authorize(req, res, next) {
@@ -46,8 +43,8 @@ async function getRemoteUserInfo(token) {
       console.log('user', user);
       return user.email;
     });
-
 }
+
 async function getUser(oauthUser) {
   let user = await Users.createFromOauth(oauthUser);
   return user;
