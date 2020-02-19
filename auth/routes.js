@@ -13,7 +13,7 @@ authRouter.post('/signup', (req, res, next) => {
   let user = new Users(req.body);
   user.save()
     .then(data => {
-      console.log(data);
+      console.log('data' , data);
       let token = Users.generateToken(data);
       res.status(200).send(token);
     }).catch(next);
