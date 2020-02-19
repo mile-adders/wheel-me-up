@@ -1,12 +1,10 @@
 # ***401 Midterm Project***
 ---------------------------------
----------------------------------
-
 # Project Wheel Me Up  
 ---------------------------------
 ## We are deployed on 3000
 
-!(wheel me up URL)[http://localhost:3000/]
+![wheel me up URL](http://localhost:3000/)
 
 ---------------------------------
 ## Wheel Me Up
@@ -96,6 +94,7 @@ npm run start
 
  - POST request to /signup route 
     in this case the user is an admin with full CRUD Capabilities,
+
  ```
 
  {
@@ -108,7 +107,7 @@ output:
 
 eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE1ODIxMTMwNDl9.IUe2QXNbfAEZqgSLRpE4kh7YGqwTdGEUYzoTT2A1K0Q
 
-expeted response status 200
+expected response status 200
  ```     
 
   in the case of signing up as a user, with a Read and create capabilities. 
@@ -125,7 +124,7 @@ output:
 
 eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE1ODIxMTMyNzB9.gUPPDS_696DAel8exh1FsQbeMhJHEwoIfzoKNmkSoGU
 
-expeted response status 200
+expected response status 200
  ```    
 - POST request for the /signin route
 sign in as an admin and a user give the same response which is the same assigned token for the signed up username. 
@@ -141,7 +140,7 @@ output:
 
 eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE1ODIxMTMyNzB9.gUPPDS_696DAel8exh1FsQbeMhJHEwoIfzoKNmkSoGU
 
-expeted response status 200
+expected response status 200
  ```   
 - get request For the /users route
  which will return all the signed up users in the DataBase 
@@ -183,7 +182,7 @@ expeted response status 200
 
 ---------------------------
 ## User Stories 
-!(Trello)[https://trello.com/b/nMNPPInv/wheel-me-up]
+[Trello](https://trello.com/b/nMNPPInv/wheel-me-up)
 
 ---------------------------
 ## Data Flow (Frontend, Backend, REST API)
@@ -196,7 +195,7 @@ expeted response status 200
 ### Overall Project Schema
 Wheel me up have multiple databases, combined with virtual keys, the user database contains the user, email, car (which acts as the virtual), dailyRentTime, and dateOut. this is the user's schema, which will have the sign in data, the car rented which connects the schema to the car owner/ car company schema. the virtual field in the owner schema/car company, is the name, the car owner schema have name (virtual), brand, type, year, dateAvailable, and price_to_rent. when the user rents a car the car field will contain all the car's data. 
 
-![Database Schema](assets/database-connection.PNG)
+[Database Schema](assets/database-connection.PNG)
 
 ---------------------------
 
@@ -215,8 +214,10 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE) f
 ------------------------------
 ## Acknowledgments
 
-* Mr. Brain Nations
-* The instructional team
-* Qusai A. Al-Hanaktah !(Backend Master)[https://github.com/Qusai-alhanaktah]
+* Mr. Brain Nations [Coolest Dude Ever](https://github.com/bnates)
+* Mr. Ahmad Al-Awad [Mr. Poker Face](https://github.com/Ahmad-Alawad)
+* Mr. Mahmoud Al-Khudairi [Mr. Boss Man](https://github.com/mahmoudkhudairi)
+* Qusai A. Al-Hanaktah [Backend Master](https://github.com/Qusai-alhanaktah)
+* Rashid S. Al-Sawalqa [Frontend Master](https://github.com/Rashid-alsawalqa)
 
 ------------------------------
