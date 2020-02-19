@@ -141,7 +141,8 @@ output:
 eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE1ODIxMTMyNzB9.gUPPDS_696DAel8exh1FsQbeMhJHEwoIfzoKNmkSoGU
 
 expected response status 200
- ```   
+ ```
+ 
 - get request For the /users route
  which will return all the signed up users in the DataBase 
 
