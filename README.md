@@ -1,41 +1,40 @@
 # ***401 Midterm Project***
 ---------------------------------
-# Project Wheel Me Up  
+# Wheel Me Up  
 ---------------------------------
-## We are deployed on 3000
+## This application is currently deployment on a development server
 
 [wheel me up URL](http://localhost:3000/)
 
 ---------------------------------
 ## Wheel Me Up
 
-We as Mile-adders believe in returning to the community, as it stands this is the age of technology and we want to carve our name in the annals of history, so as a plan of creating multiple useful web applications, we started with creating a car renting web application where our users will enjoy and use our application to connect to each other in need of renting a car, so we designed an application that provides the ability to rent cars of any type and brand, directly from their owners, or a much better deal from car renting companies, and we believe that small things like that connects the world together.
+We as Mile-adders believe in returning to the community. As it stands, this is the age of technology and we want to carve out our name in the annals of history. So as a plan of creating multiple useful web applications, we started with creating a car renting app. This is where our users will enjoy the use of our application to connect to others in need of renting a car. We designed an application that provides the ability to rent cars of any type and brand, directly from their owners. This allows for a much better deal from car renting companies and we believe that small things like that connect the world together.
 
-The web application doesn't consist of a frontend yet. but in the final project it will have a frontend, written in HTML, CSS, Bootstrap, jQuery and React. The backend was written in javascript using NodeJS, and Express.
+This web application does not consist of a user interface yet. In the final stages, it will have a user interface, created with ReactJS and modular tools like, SCSS. The backend was written in Javascript using NodeJS, and ExpressJS.
 
-An interface is provided to create new account in which you can
-choose to rent a car, from another owner, or have a better from a renting company, or be the renter.
-as a car owner you can post, view existing cars, edit existing cars data, delete existing cars, and search for cars.
-all this functionality is done by using NodeJS, and Express. 
+An interface is provided to create new account in which you can choose to rent a car, from another owner, or have a better experience than renting from a car rental company.
+
+As a car owner, you can add cars, view existing cars, edit existing cars, delete existing cars, and search for cars. All of this functionality is done through the use of NodeJS, ExpressJS, and MongoDB. 
 
 ---------------------------------
 ## Tools Used
-Microsoft Visual Studio
+Microsoft Visual Studio for code editing
 
 - NodeJS
-- Express 
-- mongoDB
+- ExpressJS
+- MongoDB
 - Swagger
-- stripe 
-- Bootstrap 4 
+- Stripe for payment integration
+- Bootstrap 4 for our payment UI
 
 ---------------------------
 ## User Stories 
- God Bless Trello!!
+God Bless Trello!!
 [Trello](https://trello.com/b/nMNPPInv/wheel-me-up)
 
 ---------------------------------
-## Future WireFrames 
+## Future Wireframes 
 
 ### Main page
 ![Main Page](assets/wheelmeup-homepage.PNG)
@@ -50,7 +49,7 @@ Microsoft Visual Studio
 ![Team Page](assets/wheelmeup-teampage.PNG)
 
 ---------------------------
-## Data Flow (Frontend, Backend, REST API)
+## Data Flow (Frontend, Backend, RESTful API)
 ![Data-Flow-Backend](assets/data-model.PNG)
 ![Data-Modeling](assets/database.PNG)
 
@@ -58,7 +57,7 @@ Microsoft Visual Studio
 ## Data Model
 
 ### Overall Project Schema
-Wheel me up have multiple databases, combined with virtual keys, the user database contains the user, email, car (which acts as the virtual), dailyRentTime, and dateOut. this is the user's schema, which will have the sign in data, the car rented which connects the schema to the car owner/ car company schema. the virtual field in the owner schema/car company, is the name, the car owner schema have name (virtual), brand, type, year, dateAvailable, and price_to_rent. when the user rents a car the car field will contain all the car's data. 
+Wheel me up has multiple databases that are combined with virtual keys. The user database contains the user, email, car (which acts as the virtual), daily rent time, and the date is rented. This is the users schema, which will have sign in data, the car rented, which connects the schema to the car owner/car company schema. The virtual field in the owner schema/car company, is the name, the car owner schema has the name (virtual), brand, type, year, date available, and price to rent. When the user rents a car, the car field will contain all the car's data. 
 
 ![Database Schema](assets/database-connection.PNG)
 ---------------------------------
@@ -68,16 +67,16 @@ Clone this repository to your local machine.
 ```
 https://github.com/mile-adders/wheel-me-up/tree/stage
 ```
-Once downloaded, you can use visual studio code and ubuntu to build the application.
+Once downloaded, you can use any text editor or terminal to build this application.
 ```
 cd YourRepo/YourProject
 `npm i`
 ```
-Install all dependencies needed for the project.
+Install all dependencies required for this application.
 ```
 Database mongoDB
 ```
- The database is used to store all the necessary data needed like, the Sign up and Sign in information and and the car renter and owner information these two objects are joined together through the car name 
+ The database is used to store all of the necessary data.  Like, sign up and sign in information, along with the car renter and owner information.  These two objects are joined together through the car name.
 ```
 cd YourRepo/YourProject
 npm run start
@@ -86,7 +85,7 @@ npm run start
 ---------------------------------
 ### Prerequisites
 
-What things you need to install the software and how to install them
+Required 3rd party modules to use this application:
 
 ```
     - @code-fellows/supergoose
@@ -110,14 +109,10 @@ What things you need to install the software and how to install them
 ```
 
 ---------------------------------
-### Installing
-After Cloning the repo and knowing the Prerequisites that are necessary, downloading the prerequisites is a **MUST!!**
+### Installation
+After cloning the repo and knowing the pre-requisites, downloading the prerequisites is a **MUST!!** You need to make sure that there is a `package.json` file (because it might not be push to the repo)
 
-you need to make sure that there is a package.json file (Because i might not push it to the repo)
-
-a package.json file needs to be present.
-
-when located
+if located,
 
 ```
 ls
@@ -129,14 +124,14 @@ if it the package.json is not present
 ```
 
 npm init -y
-npm i [all Prerequisites needed]
+npm i [all prerequisites needed]
 ```
 
 ---------------------------
 ## App Usage 
- At this stage Wheel me Up is a Pure Backend Full Stack Web Application, so to use the app functionality Swagger inspector will be used, as per the (requirements.md)[requirements.md] document, the Application's Scope is to create an application that allows a user to sign up as a car renter, or a car renter. the app is built on the GET, POST, PUT, and DELETE methods. these methods are access controlled, the car company can get, put, update, and delete. and the renter can only read, and delete. each type of users have a separate schema. both schemas are connected by virtual. a complete list of API hits is provided in details. 
+At this stage, Wheel me Up is a pure API, so to use it's functionality, you can use a tool like Swagger inspector, as per the (requirements.md)[requirements.md] document. The application's scope is to create an application that allows a user to sign up as a car renter, or a car owner. The app is built based on GET, POST, PUT, and DELETE REST methods. These methods are access controlled, where the car company can get, put, update, and delete information. The renter can only create and read. Each type of users can have a separate schema. Both schemas are connected by virtual join. A list of API routes is provided in the details. 
 
- - POST request to /signup route in this case the user is an admin with full CRUD Capabilities,
+ - POST request to /signup - in this case the user is an admin with full CRUD capabilities
 
 expected response status 200
 
@@ -152,7 +147,7 @@ output:
 eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE1ODIxMTMwNDl9.IUe2QXNbfAEZqgSLRpE4kh7YGqwTdGEUYzoTT2A1K0Q
 ```     
 
-  in the case of signing up as a user, with a Read and create capabilities. 
+in the case of signing up as a user, with a read and create capabilities
 
 ```
 
@@ -168,7 +163,7 @@ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE1ODIxMTMyNzB9.gUPPDS_696DAel8exh
 
 expected response status 200
 ```    
-- POST request for the /signin route sign in as an admin and a user give the same response which is the same assigned token for the signed up username. 
+- POST request for the /signin - sign in as an admin and give the same response - which is the same assigned token for the signed a up user
 
 expected response status 200
 
@@ -184,7 +179,7 @@ output:
 eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE1ODIxMTMyNzB9.gUPPDS_696DAel8exh1FsQbeMhJHEwoIfzoKNmkSoGU
 ```
 
-- get request For the /users route which will return all the signed up users in the DataBase 
+- get request for /users - which will return all the signed up users in the API
 
  expected response status 200
 
@@ -221,19 +216,19 @@ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE1ODIxMTMyNzB9.gUPPDS_696DAel8exh
 ```  
 
 ---------------------------------
- ### Our crown Jewel Stripe Payment
- So Life is all about the money money money, So a payment Method is a MUST, in the web application we used the Stripe Payment Service (For the Most Part), a test payment method that takes in Fake payment data, the data are the user e-mail, password, and all payment data. a test API is used to validate the payments.
+ ### Our Crown Jewel - Stripe Payments
+So life is all about the money money money! So a payment method is a MUST. This application uses the Stripe Payment Service. We integrated a test payment method that takes in payment data. The data used is the user e-mail, password, and all payment data. A test API is used to validate the payments.
 
 ---------------------------------
 ## Extra Feature
 
  ### Chat Room 
-  Chat Rooms are the infection of today's age, so it is only a natural thing to add a chat room this chat room is the communication channel between the users and car-company. this communication will ensure a firm understanding of the cars rented and payment details. 
+Chat Rooms are the infection of today's age, so it is only a natural thing to add a chat room!  This chat room is the communication channel between the users and a car-company. This communication will ensure a firm understanding of the cars rented and their payment details. 
 
 ---------------------------------
 ## TESTS 
 
-in the package.json there is a jest test running code
+in the `package.json` file there is a test script to run subsequent tests
 
 ```
 
@@ -241,9 +236,9 @@ npm run test
 ```
 
 ---------------------------------
-### API endpoints Tests
+### API Endpoint Tests
 
-  Here is an example of a test for an API Endpoint 
+Here is an example of a test for an API Endpoint:
 
 ```
 let users = {
@@ -291,7 +286,7 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE) f
 ------------------------------
 ## Acknowledgments
 
-* Mr. Brain Nations [Mr. Bnates](https://github.com/bnates)
+* Mr. Brian Nations [Mr. Bnates](https://github.com/bnates)
 * Mr. Ahmad Al-Awad [Mr. Poker Face](https://github.com/Ahmad-Alawad)
 * Mr. Mahmoud Al-Khudairi [Mr. Boss Man](https://github.com/mahmoudkhudairi)
 * Qusai A. Al-Hanaktah [Backend Master](https://github.com/Qusai-alhanaktah)
