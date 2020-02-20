@@ -34,8 +34,6 @@ Microsoft Visual Studio
  God Bless Trello!!
 [Trello](https://trello.com/b/nMNPPInv/wheel-me-up)
 
-
-
 ---------------------------------
 ## Future WireFrames 
 
@@ -217,12 +215,16 @@ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE1ODIxMTMyNzB9.gUPPDS_696DAel8exh
         "__v": 0
     }
 ```  
+
 ---------------------------------
-## Extra Features
+ ### Our crown Jewel Stripe Payment
+ So Life is all about the money money money, So a payment Method is a MUST, in the web application we used the Stripe Payment Service (For the Most Part), a test payment method that takes in Fake payment data, the data are the user e-mail, password, and all payment data. a test API is used to validate the payments.
+
+---------------------------------
+## Extra Feature
 
  ### Chat Room 
-
- ### Our crown Jewel Stripe Payment
+  Chat Rooms are the infection of today's age, so it is only a natural thing to add a chat room this chat room is the communication channel between the users and car-company. this communication will ensure a firm understanding of the cars rented and payment details. 
 
 ---------------------------------
 ## TESTS 
