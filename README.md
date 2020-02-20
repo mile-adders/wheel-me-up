@@ -4,7 +4,7 @@
 ---------------------------------
 ## This application is currently deployment on a development server
 
-[wheel me up URL](http://localhost:3000/)
+[Wheel Me Up](http://localhost:3000/)
 
 ---------------------------------
 ## Wheel Me Up
