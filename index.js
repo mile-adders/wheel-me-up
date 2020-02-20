@@ -2,6 +2,8 @@
 
 require('dotenv').config();
 const server = require('./auth/server.js');
+const MONGODB_URI = 'mongodb://localhost:27017/car-db';
+
 
 // Start up DB Server
 const mongoose = require('mongoose');

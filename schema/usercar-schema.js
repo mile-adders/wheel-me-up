@@ -8,6 +8,7 @@ const userCar = mongoose.Schema({
   car :{ type :String , require:true  } ,
   dailyRentTime :{ type : Number , require :true} ,
   dateOut : { type : Date , require : true},
+  payment : {type : String , default : null },
  } ,
  {toObject: { virtuals: true}, toJSON: { virtuals: true }});
 
