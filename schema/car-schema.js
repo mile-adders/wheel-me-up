@@ -1,8 +1,8 @@
 'use strict' ;
+
 const mongoose = require('mongoose');
 require('./usercar-schema.js');
 
-//// this is information about the car that will be rented and it will be connected with usercar schema here with name and there with car 
 const car = mongoose.Schema({
   name :{ type : String , require:true },
   brand :{ type : String , require:true },

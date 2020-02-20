@@ -18,14 +18,14 @@
 //       }).catch(console.error);
 //   });
 
-//   it('Middleware responds with 500 in case on an error', ()=> {
-//     // return errorMockRequest
-//     //   .get('/error')
-//     //   .then(data => {
-//     //     // expect(data.status).toBe(500);
-//     //   }).catch(console.error);
-//   });
 
-//   // it( for the logger middleware)
-// });
+  it('Middleware responds with 500 in case on an error', ()=> {
+    return errorMockRequest
+      .get('/error')
+      .then(data => {
+        expect(data.status).toBe(500);
+      }).catch(console.error);
+  });
+  
+});
 

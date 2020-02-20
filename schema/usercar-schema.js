@@ -2,7 +2,6 @@
 'use strict' ;
 const mongoose = require('mongoose');
 
-/////// her the schema for person who will renter the car 
 const userCar = mongoose.Schema({
   user :{ type : String , require:true },
   email :{ type : String , require:true },
