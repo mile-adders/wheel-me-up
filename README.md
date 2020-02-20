@@ -103,6 +103,10 @@ What things you need to install the software and how to install them
     - supergoose
     - jsdocs
     - superagent
+    - express-handlebars
+    - body-parser
+    - stripe
+    - socket.io
 ```
 
 ---------------------------------
