@@ -38,8 +38,10 @@ app.get('/success', (req, res) => {
 //charge route 
 
 app.post('/charge', (req, res) => {
+  
   const amount = 35000;
   
+  console.log('req.body', req.body);
   stripe.customers.create({
     email: req.body.stripeEmail,
     source: req.body.stripeToken,
@@ -50,9 +52,7 @@ app.post('/charge', (req, res) => {
     currency: 'usd',
     customer: customer.id,
   }))
-  .then(charge =>
-    
-     res.render('success'));
+  .then(charge =>  res.render('success'));
 });
 
 const port = process.env.PORT || 5000;
