@@ -3,9 +3,9 @@
 const mongoose = require('mongoose');
 
 const userCar = mongoose.Schema({
-  location:{ type: data , require:true},
-  dailyRentTime :{ type : Number , require :true} ,
-  dateOut : { type : Date , require : true},
+  PickUpLocation:{ type: String , require:true},
+  PickUpDate :{ type : Date , require :true} ,
+  DropOffDate : { type : Date , require : true},
   
  } ,
  {toObject: { virtuals: true}, toJSON: { virtuals: true }});
