@@ -25,7 +25,8 @@ function googleHandler(req, res, next) {
   res.status(200).send(req.user.validToken);
 }
 
-authRouter.post('/signin', basicAuth, bearerAuth, (req, res) => {
+authRouter.post('/signin', basicAuth, (req, res) => {
+  console.log('req.token' , req.token);
   res.status(200).send(req.token);
 });
 
@@ -41,4 +42,5 @@ authRouter.get('/oauth', oauth, (req, res) => {
 });
 
 authRouter.get('/oauthv2', oauth, googleHandler);
+
 module.exports = authRouter;
