@@ -4,17 +4,17 @@ const mongoose = require('mongoose');
 require('./usercar-schema.js');
 
 const car = mongoose.Schema({
-  name :{ type : String , require:true },
+  carName :{ type : String , require:true },
   brand :{ type : String , require:true },
   type :{ type :String , require:true  } ,
   year :{ type : Number , require :true} ,
-  dateavailable :{ type : Date , require: true},
-  price_for_rent : { type : String , require : true},
+  dateAvailable :{ type : Date , require: true},
+  priceForRent : { type : String , require : true},
 }, { toObject: { virtuals: true}, toJSON: { virtuals: true }});
 
 car.virtual('all_car', {
   ref :'userCar' ,
-  localField : 'name',
+  localField : 'carName',
   foreignField : 'car' ,
   justOne : true ,
 });

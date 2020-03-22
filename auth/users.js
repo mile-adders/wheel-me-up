@@ -7,11 +7,7 @@ const mongoose = require('mongoose');
 const jwt_decode = require('jwt-decode');
 
 let SECRET = 'cool mai';
-// const users = new mongoose.Schema({
-//   userName: { type: String, required: true, unique: true },
-//   password: { type: String, required: true },
-//   role: { type: String, required: true, default: 'guest', enum: [ 'admin', 'guest', 'user' ] },
-// });
+
 const users = new mongoose.Schema({
     username:{type: String, required: true, unique: true},
     firstName: { type: String, required: true, unique: true },
