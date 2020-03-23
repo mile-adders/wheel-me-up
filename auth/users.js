@@ -9,10 +9,13 @@ const jwt_decode = require('jwt-decode');
 let SECRET = 'cool mai';
 
 const users = new mongoose.Schema({
-  username: { type: String, required: true, unique: true },
-  password: { type: String, required: true },
-  role: { type: String, required: true, default: 'guest', enum: [ 'admin', 'guest', 'user' ] },
-});
+    username:{type: String, required: true, unique: true},
+    firstName: { type: String, required: true, unique: true },
+    lastName: { type: String, required: true, unique: true },
+    email: { type: String, required: true, unique: true },
+    password: { type: String, required: true },
+    role: { type: String, required: true, default: 'guest', enum: [ 'admin', 'guest', 'user' ] },
+  });
 
 users.statics.checkCpabilities = (capability, role) => {
   console.log('capability inside checkcapabilites', capability);

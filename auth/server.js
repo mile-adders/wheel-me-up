@@ -32,7 +32,7 @@ app.use(errorHandler);
 module.exports = {
   server: app,
   start: port => {
-    let PORT = port || process.env.PORT || 3000;
+    let PORT = port || process.env.PORT || 4000;
     app.listen(PORT, () => console.log(`Server is a live listening on ${PORT}`));
   },
 };
