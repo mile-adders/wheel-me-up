@@ -3,12 +3,10 @@
 const mongoose = require('mongoose');
 
 const userCar = mongoose.Schema({
-  user :{ type : String , require:true },
-  email :{ type : String , require:true },
+  pickupLocation :{ type : String , require:true },
+  pickupDate :{ type : String , require:true },
+  dropOffDate :{ type : Number , require :true} ,
   car :{ type :String , require:true  } ,
-  dailyRentTime :{ type : Number , require :true} ,
-  dateOut : { type : Date , require : true},
-  payment : {type : String , default : null },
  } ,
  {toObject: { virtuals: true}, toJSON: { virtuals: true }});
 
