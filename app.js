@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable no-undef */
 'use strict';
 
@@ -46,13 +47,13 @@ app.post('/charge', (req, res) => {
     email: req.body.stripeEmail,
     source: req.body.stripeToken,
   })
-  .then(customer => stripe.charges.create({
-    amount,
-    description: 'Car-rentals app',
-    currency: 'usd',
-    customer: customer.id,
-  }))
-  .then(charge =>  res.render('success'));
+    .then(customer => stripe.charges.create({
+      amount,
+      description: 'Car-rentals app',
+      currency: 'usd',
+      customer: customer.id,
+    }))
+    .then(charge =>  res.render('success'));
 });
 
 const port = process.env.PORT || 5000;

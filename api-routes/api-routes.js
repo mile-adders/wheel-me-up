@@ -5,12 +5,15 @@ const express = require('express');
 
 const car_company = require('../model/car-schema-model.js');
 const userCar = require('../model/usercar-schema-model.js');
+const Question = require('../model/question-and-answer-model.js');
 const accessControlList = require('../auth/acl-middleware.js');
 const bearerAuth = require('../auth/bearer-auth-middleware.js');
 const basicAuth = require('../auth/basic-auth-middleware.js');
 
 const router = express.Router();
 
+router.get('/question', getQuestion);
+router.post('/question', postQuestion);
 router.get('/car-company',basicAuth, accessControlList('read') , getCar);
 router.get('/car-company/:_id',basicAuth,accessControlList('read'), getCarByIdea);
 router.post('/car-company',basicAuth,accessControlList('create') ,postCar);
@@ -20,7 +23,7 @@ router.get('/user-car',basicAuth,accessControlList('read'), get_rentCar);
 router.post('/user-car',basicAuth,accessControlList('create'), post_rentCar);
 router.delete('/user-car/:_id',basicAuth,accessControlList('delete'), delete_rentCar);
 
-
+let newQuestion = new Question;
 let newCar = new car_company; 
 let newUser = new userCar ; 
 
@@ -62,6 +65,30 @@ function getCarByIdea(req, res, next) {
     .catch(next);
 }
 
+// the question get method 
+
+/**
+ * function 
+ * read all data ( means show whole data in our api )
+ * @params {object} req 
+ * @params {object} res 
+ * @params {function} next 
+ */
+
+function getQuestion(req, res , next) {
+  newQuestion.get()
+    .then(data => {
+      console.log('data in get function' , data);
+            
+      const results = {
+        count: data.length,
+        ourData: data,
+      };
+      res.status(200).json(results);
+    })
+    .catch(next);
+}
+
 /**
  * function
  * create an object the hold information about our car app 
@@ -71,6 +98,23 @@ function getCarByIdea(req, res, next) {
  */
 function postCar(req, res, next) {
   newCar.create(req.body)
+    .then(results =>{
+      res.status(201).json(results);
+    },
+    )
+    .catch(next);
+}
+
+// post a question 
+/**
+ * function
+ * create an object that holds all the questions
+ * @params {object} req 
+ * @params {object} res 
+ * @params {function } next 
+ */
+function postQuestion(req, res, next) {
+  newQuestion.create(req.body)
     .then(results =>{
       res.status(201).json(results);
     },
