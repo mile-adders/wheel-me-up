@@ -75,7 +75,7 @@ function getCarByIdea(req, res, next) {
 function getQuestion(req, res , next) {
   newQuestion.get()
     .then(data => {
-      console.log('data in get function' , data);
+      console.log('data' , data);
       res.status(200).json(data);
     })
     .catch(next);
