@@ -14,6 +14,8 @@ const router = express.Router();
 
 router.get('/question', getQuestion);
 router.post('/question', postQuestion);
+router.put('/question/:_id', updateQuestion);
+router.post('/question/:_id', deleteQuestion);
 router.get('/car-company',basicAuth, accessControlList('read') , getCar);
 router.get('/car-company/:_id',basicAuth,accessControlList('read'), getCarByIdea);
 router.post('/car-company',basicAuth,accessControlList('create') ,postCar);
@@ -40,12 +42,7 @@ function getCar(req, res , next) {
   newCar.get()
     .then(data => {
       console.log('data in get function' , data);
-            
-      const results = {
-        count: data.length,
-        ourData: data,
-      };
-      res.status(200).json(results);
+      res.status(200).json(data);
     })
     .catch(next);
 }
@@ -79,12 +76,7 @@ function getQuestion(req, res , next) {
   newQuestion.get()
     .then(data => {
       console.log('data in get function' , data);
-            
-      const results = {
-        count: data.length,
-        ourData: data,
-      };
-      res.status(200).json(results);
+      res.status(200).json(data);
     })
     .catch(next);
 }
@@ -140,6 +132,22 @@ function updatecar (req , res , next){
 
 /**
  * function
+ * this function to update the information and return the new data 
+ * @params {object} req 
+ * @params {object} res 
+ * @params {functions} next 
+ */
+
+function updateQuestion (req , res , next){
+  newQuestion.update(req.params._id , req.body)
+    .then( results =>{
+      res.status(200).json(results);
+    })
+    .catch(next);
+}
+
+/**
+ * function
  * it's delete an item 
  * @params {object } req 
  * @params { object} res 
@@ -150,6 +158,22 @@ function deletecar (req , res , next ){
   newCar.delete (req.params._id)
     .then( results => {
       res.status(200).json('iam delete');
+    })
+    .catch(next);
+}
+
+/**
+ * function
+ * to delete a question
+ * @params {object } req 
+ * @params { object} res 
+ * @params { functions} next 
+ */
+
+function deleteQuestion (req , res , next ){
+  newQuestion.delete (req.params._id)
+    .then( results => {
+      res.status(200).json('Deleted!!');
     })
     .catch(next);
 }
