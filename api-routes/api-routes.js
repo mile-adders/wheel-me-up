@@ -15,7 +15,7 @@ const router = express.Router();
 router.get('/question', getQuestion);
 router.post('/question', postQuestion);
 router.put('/question/:_id', updateQuestion);
-router.post('/question/:_id', deleteQuestion);
+router.delete('/question/:_id', deleteQuestion);
 router.get('/car-company',basicAuth, accessControlList('read') , getCar);
 router.get('/car-company/:_id',basicAuth,accessControlList('read'), getCarByIdea);
 router.post('/car-company',basicAuth,accessControlList('create') ,postCar);
