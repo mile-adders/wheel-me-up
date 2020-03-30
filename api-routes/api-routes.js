@@ -12,18 +12,32 @@ const basicAuth = require('../auth/basic-auth-middleware.js');
 
 const router = express.Router();
 
+// router.get('/question', getQuestion);
+// router.post('/question', postQuestion);
+// router.put('/question/:_id', updateQuestion);
+// router.delete('/question/:_id', deleteQuestion);
+// router.get('/car-company',basicAuth, accessControlList('read') , getCar);
+// router.get('/car-company/:_id',basicAuth,accessControlList('read'), getCarByIdea);
+// router.post('/car-company',basicAuth,accessControlList('create') ,postCar);
+// router.put('/car-company/:_id',basicAuth, accessControlList('update') , updatecar );
+// router.delete('/car-company/:_id',basicAuth,accessControlList('delete'), deletecar);
+// router.get('/user-car',basicAuth,accessControlList('read'), get_rentCar);
+// router.post('/user-car',basicAuth,accessControlList('create'), post_rentCar);
+// router.delete('/user-car/:_id',basicAuth,accessControlList('delete'), delete_rentCar);
+
 router.get('/question', getQuestion);
 router.post('/question', postQuestion);
 router.put('/question/:_id', updateQuestion);
 router.delete('/question/:_id', deleteQuestion);
-router.get('/car-company',basicAuth, accessControlList('read') , getCar);
-router.get('/car-company/:_id',basicAuth,accessControlList('read'), getCarByIdea);
-router.post('/car-company',basicAuth,accessControlList('create') ,postCar);
-router.put('/car-company/:_id',basicAuth, accessControlList('update') , updatecar );
-router.delete('/car-company/:_id',basicAuth,accessControlList('delete'), deletecar);
-router.get('/user-car',basicAuth,accessControlList('read'), get_rentCar);
-router.post('/user-car',basicAuth,accessControlList('create'), post_rentCar);
-router.delete('/user-car/:_id',basicAuth,accessControlList('delete'), delete_rentCar);
+router.get('/car-company' , getCar);
+router.get('/car-company/:_id', getCarByIdea);
+router.post('/car-company',postCar);
+router.put('/car-company/:_id', updatecar );
+router.delete('/car-company/:_id', deletecar);
+router.get('/user-car', get_rentCar);
+router.post('/user-car', post_rentCar);
+router.delete('/user-car/:_id', delete_rentCar);
+
 
 let newQuestion = new Question;
 let newCar = new car_company; 
