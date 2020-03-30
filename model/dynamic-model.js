@@ -1,3 +1,4 @@
+/* eslint-disable no-dupe-class-members */
 'use strict' ;
 
 class Model {
@@ -13,6 +14,18 @@ class Model {
     if(_id){
       return this.schema.findOne({_id});
     }else{
+      return this.schema.find({});
+    }
+  }
+
+  get(data){
+    if(data){
+      console.log('true');
+
+      console.log('get hiii', data);
+      return this.schema.find({'location' : data });
+    }else{
+      console.log('false');
       return this.schema.find({});
     }
   }

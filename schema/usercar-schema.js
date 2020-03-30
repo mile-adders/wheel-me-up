@@ -6,7 +6,7 @@ const userCar = mongoose.Schema({
   pickupLocation :{ type : String , require:true },
   pickupDate :{ type : String , require:true },
   dropOffDate :{ type : Number , require :true} ,
-  car :{ type :String , require:true  } ,
+  carType :{ type :String , require:true  } ,
  } ,
  {toObject: { virtuals: true}, toJSON: { virtuals: true }});
 
