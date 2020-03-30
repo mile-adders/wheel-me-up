@@ -18,17 +18,13 @@ class Model {
     }
   }
 
-  get(data){
-    if(data){
-      console.log('true');
-
-      console.log('get hiii', data);
-      return this.schema.find({'location' : data });
-    }else{
-      console.log('false');
-      return this.schema.find({});
-    }
-  }
+  // get(data){
+  //   if(data){
+  //     return this.schema.find({ 'location' : data });
+  //   }else{
+  //     return this.schema.find({});
+  //   }
+  // }
 
   create(record) {
     let newData = new this.schema(record);

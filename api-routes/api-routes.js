@@ -103,8 +103,10 @@ function getQuestion(req, res , next) {
  * @params {function } next 
  */
 function postCar(req, res, next) {
+  console.log('req.body', req.body);
   newCar.create(req.body)
     .then(results =>{
+      console.log('results', results);
       res.status(201).json(results);
     },
     )

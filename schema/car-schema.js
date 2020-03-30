@@ -8,10 +8,10 @@ const car = mongoose.Schema({
   brand :{ type : String , require:true },
   type :{ type :String , require:true  } ,
   year :{ type : Number , require :true} ,
-  carImage_URL: { type :String , required : true},
-  location: { type :String , required : true},
   dateAvailable :{ type : Date , require: true},
   priceForRent : { type : String , require : true},
+  location: { type :String , required : true},
+  carImage_URL: { type :String , required : true},
 }, { toObject: { virtuals: true}, toJSON: { virtuals: true }});
 
 car.virtual('all_car', {
