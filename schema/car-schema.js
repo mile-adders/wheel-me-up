@@ -6,11 +6,11 @@ require('./usercar-schema.js');
 const car = mongoose.Schema({
   carName :{ type : String , require:true },
   brand :{ type : String , require:true },
-  type :{ type :String , require:true  } ,
+  carType :{ type :String , require:true  } ,
   year :{ type : Number , require :true} ,
   dateAvailable :{ type : Date , require: true},
   priceForRent : { type : String , require : true},
-  location: { type :String , required : true},
+  pickupLocation: { type :String , required : true},
   carImage_URL: { type :String , required : true},
 }, { toObject: { virtuals: true}, toJSON: { virtuals: true }});
 
